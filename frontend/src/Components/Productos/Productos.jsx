@@ -1,6 +1,6 @@
-import React from "react";
+import React,{ Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+/*
 const drinksData = [
     {id : 0 ,  name : 'Tacho 1' , category:'Basureros Inteligentes' , price : 50 , rate : 4.5 , img : 'https://i.pinimg.com/564x/67/2f/30/672f3044588f2aeded27976ccf67cdfb.jpg'},
     {id : 1 ,  name : 'Tacho 2' , category:'Basureros Inteligentes' , price : 180 , rate : 5 , img : 'https://i.pinimg.com/564x/b3/4e/e3/b34ee34c3be832470808cbd065c4214c.jpg'},
@@ -34,5 +34,58 @@ const Productos = () => {
         </div>
     )
 }
-
+*/
+class Productos extends Component {
+   
+    // Constructor 
+    constructor(props) {
+        super(props);
+   
+        this.state = {
+            items: [],
+            DataisLoaded: false
+        };
+    }
+   
+    // ComponentDidMount is used to
+    // execute the code 
+    componentDidMount() {
+        fetch("http://127.0.0.1:8000/api/?format=json")
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
+                    items: json,
+                    DataisLoaded: true
+                });
+            })
+    }
+    render() {
+        const { DataisLoaded, items } = this.state;
+        if (!DataisLoaded) return <div>
+            <h1> Pleses wait some time.... </h1> </div> ;
+   
+        return (
+        <div className = "Productos">
+            <div className="container">
+                <div className="row row-cols-1 row-cols-md-4 g-4">  {
+                items.map((item) => ( 
+                    <div className="card me-5">
+                    <img className="card-img-top" src={item.img} alt={item.id}/>
+                    <div className="card-body">
+                        <h5 className="card-title">{item.nombre}</h5>
+                        <p className="card-text">S/. {item.precio}</p>
+                        <a className="btn btn-primary">Añadir al carrito</a>
+                    </div>
+                    <div className="card-footer">
+                    <small className="text-muted">{item.categoria}</small>
+                    </div>
+                    </div>
+                ))
+                }
+                </div>
+            </div>
+        </div>
+    );
+}
+}
 export default Productos;

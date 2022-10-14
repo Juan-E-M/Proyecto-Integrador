@@ -31,6 +31,6 @@ router = routers.DefaultRouter()
 router.register(r'tasks',views.ProductosView, 'task')
 
 urlpatterns = [
-    path('api/', include('api.urls')),
+    path('', include('api.urls')),
     path('admin/', admin.site.urls),
 ]
