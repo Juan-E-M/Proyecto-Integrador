@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Productos(models.Model):
-    id=models.IntegerField()
     nombre=models.CharField(max_length=100)
     descripcion=models.CharField(max_length=500)
     categoria=models.CharField(max_length=100)
