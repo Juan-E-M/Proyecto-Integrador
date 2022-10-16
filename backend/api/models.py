@@ -17,6 +17,7 @@ class Usuarios(models.Model):
     last_name=models.CharField(max_length=50)
     password=models.CharField(max_length=16)
     address = models.CharField(max_length=50)
-    #perfil_image = models.ImageField(upload_to="users", null=True)
+    email = models.EmailField(max_length=100)
+    perfil_image = models.ImageField(upload_to="users", null=True)
     def __str__(self):
         return self.username

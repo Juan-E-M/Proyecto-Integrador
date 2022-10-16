@@ -6,13 +6,16 @@ import '../../assets/css/Register.css'
 
 function Register(){
 
-    const [name,setName]=useState("")
-    const [release_date,setRelease_date]=useState("")
-    const [rating,setRating]=useState("")
-    const [category,setCategory]=useState("")
+    const [username,setName]=useState("")
+    const [email,setEmail]=useState("")
+    const [first_name,setFirst_name]=useState("")
+    const [last_name,setLast_name]=useState("")
+    const [password,setPassword]=useState("")
+    const [address,setAddress]=useState("")
+
 
     async function signUp(){
-        let item = {name,release_date,rating,category}
+        let item = {username,email,password,first_name,last_name,address}
         console.warn(item);
 
         let result = await fetch("http://127.0.0.1:8000/api/usuarios",
@@ -25,8 +28,9 @@ function Register(){
                 }
             })
 
-        result = await result.json()
-        console.warn("result",result)
+        result = await result.json();
+        console.warn("result",result);
+        localStorage.setItem("user",JSON.stringify(result))
     }
 
     return(
@@ -45,49 +49,33 @@ function Register(){
                                 <div className="row register-form">
                                     <div className="col-md-6">
                                         <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="name" value={name}
+                                            <input type="text" className="form-control" placeholder="Username" value={username}
                                             onChange={(e)=>setName(e.target.value)}/>
                                         </div>
                                         <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="realese date" value={release_date}
-                                            onChange={(e)=>setRelease_date(e.target.value)} />
+                                            <input type="text" className="form-control" placeholder="Email" value={email}
+                                            onChange={(e)=>setEmail(e.target.value)}/>
                                         </div>
                                         <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="rating *" value={rating}
-                                            onChange={(e)=>setRating(Number(e.target.value))} />
-                                        </div>
-                                        <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="category" value={category}
-                                            onChange={(e)=>setCategory(e.target.value)} />
-                                        </div>
-                                        <div className="form-group m-1">
-                                            <input type="password" className="form-control" placeholder="Password *" value="" />
-                                        </div>
-                                        <div className="form-group m-1">
-                                            <input type="password" className="form-control"  placeholder="Confirm Password *" value="" />
+                                            <input type="password" className="form-control" placeholder="Password" value={password}
+                                            onChange={(e)=>setPassword(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        <div className="form-group m-1">
-                                            <input type="email" className="form-control" placeholder="Your Email *" value="" />
+                                    <div className="form-group m-1">
+                                            <input type="text" className="form-control" placeholder="First name" value={first_name}
+                                            onChange={(e)=>setFirst_name(e.target.value)}/>
                                         </div>
                                         <div className="form-group m-1">
-                                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" className="form-control" placeholder="Your Phone *" value="" />
+                                            <input type="text" className="form-control" placeholder="Last name" value={last_name}
+                                            onChange={(e)=>setLast_name(e.target.value)}/>
                                         </div>
                                         <div className="form-group m-1">
-                                            <select className="form-control">
-                                                <option className="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="Enter Your Answer *" value="" />
+                                            <input type="text" className="form-control" placeholder="First name" value={address}
+                                            onChange={(e)=>setAddress(e.target.value)} />
                                         </div>
                                         <button className="btnCancel"  value="Cancel">Cancel</button>
                                         <button onClick={signUp} className="btnRegister">Register</button>
-                                        
                                     </div>
                                 </div>
                             </div>
