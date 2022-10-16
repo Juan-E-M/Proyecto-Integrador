@@ -23,8 +23,8 @@ class ProductosView(viewsets.ModelViewSet):
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Productos
-from .serializers import ProductosSerializer
+from .models import *
+from .serializers import *
 
 class IndexView(APIView):
     
@@ -65,3 +65,37 @@ class ProductosDetailView(APIView):
         serProductos = ProductosSerializer(dataProductos)
         dataProductos.delete()
         return Response(serProductos.data)
+
+#########################################################################3
+class UsuariosView(APIView):
+    def get(self, request):
+        data = Usuarios.objects.all()
+        serUsuarios = UsuariosSerializer(data, many=True)
+        return Response(serUsuarios.data)
+
+    def post(self, request):
+        serUsuarios = UsuariosSerializer(data=request.data)
+        serUsuarios.is_valid(raise_exception=True)
+        serUsuarios.save()
+
+        return Response(serUsuarios.data)
+
+class UsuarioDetailView(APIView):
+
+    def get(self, request, usuario_id):
+        dataUsuarios = Usuarios.objects.get(pk=usuario_id)
+        serUsuarios = UsuariosSerializer(dataUsuarios)
+        return Response(serUsuarios.data)
+
+    def put(self, request, usuario_id):
+        dataUsuarios = Usuarios.objects.get(pk=usuario_id)
+        serUsuarios = UsuariosSerializer(dataUsuarios, data=request.data)
+        serUsuarios.is_valid(raise_exception=True)
+        serUsuarios.save()
+        return Response(serUsuarios.data)
+
+    def delete(self, request, usuario_id):
+        dataUsuarios = Usuarios.objects.get(pk=usuario_id)
+        serUsuarios = UsuariosSerializer(dataUsuarios)
+        dataUsuarios.delete()
+        return Response(serUsuarios.data)

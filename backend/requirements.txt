@@ -1,3 +1,6 @@
-django==3.2
+django==4.1.2
 mysqlclient
 django-crispy-forms
+pillow
+django-cors-headers
+djangorestframework
