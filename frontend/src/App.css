@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+section {
+  color: #fff;
+  text-shadow: 3px 3px rgba(50,50,70,0,5);
+  background-color: #39784D;
+  height: 100vh;
+}
+
+.navBg {
+  background-color: #000000;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
