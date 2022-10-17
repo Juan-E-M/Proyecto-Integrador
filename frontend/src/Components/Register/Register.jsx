@@ -1,9 +1,6 @@
 import React, {  useState } from 'react';
 import '../../assets/css/Register.css'
 
-
-
-
 function Register(){
 
     const [username,setName]=useState("")
@@ -74,7 +71,6 @@ function Register(){
                                             <input type="text" className="form-control" placeholder="Address" value={address}
                                             onChange={(e)=>setAddress(e.target.value)} />
                                         </div>
-                                        <button className="btnCancel"  value="Cancel">Cancel</button>
                                         <button onClick={signUp} className="btnRegister">Register</button>
                                     </div>
                                 </div>
