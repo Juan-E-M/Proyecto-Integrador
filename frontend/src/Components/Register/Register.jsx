@@ -71,7 +71,7 @@ function Register(){
                                             onChange={(e)=>setLast_name(e.target.value)}/>
                                         </div>
                                         <div className="form-group m-1">
-                                            <input type="text" className="form-control" placeholder="First name" value={address}
+                                            <input type="text" className="form-control" placeholder="Address" value={address}
                                             onChange={(e)=>setAddress(e.target.value)} />
                                         </div>
                                         <button className="btnCancel"  value="Cancel">Cancel</button>
