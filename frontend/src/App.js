@@ -1,11 +1,11 @@
-import Login from "./Components/Login/Login";
+import Info from "./Components/Info/Info";
 
 
 
 function App() {
 
   return (
-    <Login/>
+    <Info/>
   );
 }
 
