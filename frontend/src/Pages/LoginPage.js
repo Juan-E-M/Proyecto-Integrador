@@ -1,34 +1,27 @@
 import React from "react";
-import {useState} from "react";
+import { useContext } from "react";
+import AuthContext from "../Context/AuthContext";
 
 
+const LoginPage = () => {
 
-const Login = () => {
+    let {loginUser} = useContext(AuthContext)
 
-    // const [user , setUser] = useState("");
-
-    // fetch("http://127.0.0.1:8000/user")
-    // .then(function(response){
-    //     return response.json();
-    // })
-    // .then(function(userAPI){
-    //     setUser(userAPI)
-        
-    // })
 
     return (
-        <div className="container position-absolute top-50 start-50 translate-middle">
+        <div>
+            <div className="container loged">
               <div className="row">
                 <div className="col-sm-6">
                     <h1>Recicla</h1>
-                    <form>
+                    <form onSubmit = {loginUser}>
                         <div className="sm-3">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                            <input type="text" className="form-control" name="username"/>
                         </div>
                         <div className="sm-3">
                             <label className="form-label">Contraseña</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1"/>
+                            <input type="password" className="form-control" name="password"/>
                             <div id="emailHelp" className="form-text">¿Has olvidado la contraseña?</div>
                         </div>
                         <button type="submit" className="btn btn-primary">Ingresar</button>
@@ -39,7 +32,39 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        </div>
     )
+
 }
 
-export default Login;
+export default LoginPage;
+
+
+
+
+// import React from "react";
+// import Loged from "./Loged";
+// import { useEffect } from "react";
+// import {useState} from "react";
+
+
+
+// const Login = () => {
+
+//     const [user , setUser] = useState([]);
+
+//     useEffect(() => {
+        
+//         fetch("http://127.0.0.1:8000/api/token/")
+//             .then((response) => response.json())
+//             .then((user) => {
+//                 setUser(user)
+//             });
+//     },[])
+
+//     return (
+//         <Loged user = {user}/>
+//     )
+// }
+
+// export default Login;

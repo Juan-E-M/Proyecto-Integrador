@@ -10,19 +10,41 @@ code {
     monospace;
 }
 
-
-.image-login{
-  border-radius: 30px;
-  filter:drop-shadow(2px 8px 8px #585858)
+.loged{
+  margin-top: 100px;
 }
 
-.container{
-  /* background-color:rgb(175, 206, 175); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90%;
-  border-top-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+.footer-9938{
+  
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgb(255, 255, 255);
+}
+
+.footer-9938 .container{
+  margin-top: 40px;
+}
+
+.footer-9938 a{
+  text-decoration: none;
+}
+
+.general-container{
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.logo-footer{
+  width: 90px;
+  height : 90px;
+}
+
+.logo-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-unstyled li{
+  margin-bottom: 10px;
 }
