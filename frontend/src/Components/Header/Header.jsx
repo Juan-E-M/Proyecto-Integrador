@@ -2,12 +2,13 @@ import React, { useReducer } from "react";
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
 import AuthContext from "../../Context/AuthContext";
-
+import HomePage from "../../Pages/HomePage";
+import Main from "../Main/Main";
 
 
 const Header = () => {
 
-    let {user} = useContext(AuthContext);
+    let {user , logoutUser} = useContext(AuthContext);
 
     return(
         
@@ -15,15 +16,11 @@ const Header = () => {
             <Link to="/"> Home </Link>
             <span>    |    </span>
             {user ? (
-                <p> Logout </p>
+                <p onClick={logoutUser}> Logout </p>
                 ) : (
                     <Link to = "/login"> Login </Link>
                 )}
-
-
-
-            {user && <p>Hello {user.username}</p>}
-
+            {user && <HomePage/>}
         </div>
 
     )

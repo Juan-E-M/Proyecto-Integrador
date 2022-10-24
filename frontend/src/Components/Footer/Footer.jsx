@@ -36,26 +36,26 @@ const Footer = () => {
             <div className="col-md">
               <h3>Siguenos</h3>
               <ul className="social list-unstyled">
-                <li><a href="#">
+                <li>
                   <MDBBtn style={{ backgroundColor: '#55acee' }} href='#'>
                   <MDBIcon className='me-2' fab icon='twitter' /> Twitter
                   </MDBBtn>
-                </a></li>
-                <li><a href="#">
+                </li>
+                <li>
                   <MDBBtn style={{ backgroundColor: '#3b5998' }} href='#'>
                   <MDBIcon className='me-2' fab icon='facebook' /> Facebook
                   </MDBBtn>
-                </a></li>
-                <li><a href="#">
+                </li>
+                <li>
                   <MDBBtn style={{ backgroundColor: '#ac2bac' }} href='#'>
                   <MDBIcon className='me-2' fab icon='instagram' /> Instagram
                   </MDBBtn>
-                </a></li>
-                <li><a href="#">
+                </li>
+                <li>
                   <MDBBtn style={{ backgroundColor: '#25d366' }} href='#'>
                   <MDBIcon className='me-2' fab icon='whatsapp' /> Whatsapp
                   </MDBBtn>
-                </a></li>
+                </li>
               </ul>
             </div>
           </div> 

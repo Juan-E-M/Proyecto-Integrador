@@ -3,9 +3,12 @@ import LoginPage from "./Pages/LoginPage";
 import Header  from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import  PrivateRoutes from "./utils/PrivateRoutes";
-import { AuthProvider } from "./Context/AuthContext";
+import Main from "./Components/Main/Main";
 
+
+import { AuthProvider } from "./Context/AuthContext";
 import {BrowserRouter as Router , Routes , Route} from 'react-router-dom';
+
 
 
 function App() {
@@ -19,9 +22,10 @@ function App() {
 
           <Routes>
             <Route element={<PrivateRoutes/>} >
-              <Route element = {<HomePage />} path="/" exact />
+              <Route exact path="/" element = {<HomePage />}  />
             </Route>
-            <Route element = {<LoginPage />} path="/login" exact />
+            <Route exact path="/main" element = {<Main />} />
+            <Route exact path="/login" element = {<LoginPage />} />
           </Routes>
           <Footer/>
         </AuthProvider>
