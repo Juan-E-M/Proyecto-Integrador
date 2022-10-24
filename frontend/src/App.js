@@ -10,6 +10,7 @@ import Nosotros from "./Components/LandingPage/Nosotros";
 import Login from "./Components/LandingPage/Login";
 import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
+import CheckoutPage from './Components/Checkout/CheckoutPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='nosotros' element={ <Nosotros/> } />
           <Route path='login' element={ <Login/> } />
           <Route path='register' element={ <Register/> } />
+          <Route path='checkout' element={ <CheckoutPage/> } />
           <Route path='*' element={ <Navigate replace to="/"/> } />
         </Route>
       </Routes>

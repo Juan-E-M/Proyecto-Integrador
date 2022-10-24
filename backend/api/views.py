@@ -74,6 +74,7 @@ class UsuariosView(APIView):
         return Response(serUsuarios.data)
 
     def post(self, request):
+
         serUsuarios = UsuariosSerializer(data=request.data)
         serUsuarios.is_valid(raise_exception=True)
         serUsuarios.save()
