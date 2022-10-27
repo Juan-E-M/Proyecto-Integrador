@@ -1,5 +1,9 @@
 import React,{ Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Navigate, Routes, Route, Link, Switch} from 'react-router-dom';
+import Producto from './Producto';
+import '../../assets/css/Productos.css'
+
 /*
 const drinksData = [
     {id : 0 ,  name : 'Tacho 1' , category:'Basureros Inteligentes' , price : 50 , rate : 4.5 , img : 'https://i.pinimg.com/564x/67/2f/30/672f3044588f2aeded27976ccf67cdfb.jpg'},
@@ -66,17 +70,16 @@ class Productos extends Component {
    
         return (
         <div className = "Productos">
-            <div className="container">
+            <div className="container py-3">
                 <div className="row row-cols-1 row-cols-md-4 g-4">  {
                 items.map((item) => ( 
                     <div class="col">
                         <div className="card me-5">
-                            <img className="card-img-top" src={item.img} alt={item.id}/>
+                        <Link to={`/productos/${item.id}`}><img className="card-img-top imagen" src={item.img1} alt={item.id} /></Link>
                             <div className="card-body">
                                 <h5 className="card-title">{item.nombre}</h5>
-                                <p class="card-text">{item.descripcion}</p>
                                 <p className="card-text">S/. {item.precio}</p>
-                                <a className="btn btn-primary">Añadir al carrito</a>
+                                <a href="#" class="btn btn-primary">Añadir al carrito</a>
                             </div>
                             <div className="card-footer">
                                 <small className="text-muted">{item.categoria}</small>

@@ -8,7 +8,7 @@ from .models import Productos
 class ProductosAdmin(admin.ModelAdmin):
   
     # add the fields of the model here
-    list_display = ("nombre","descripcion","categoria","precio","img")
+    list_display = ("nombre","descripcion","categoria","precio","img1","img2","img3")
   
 # we will need to register the
 # model class and the Admin model class
