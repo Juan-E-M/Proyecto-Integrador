@@ -6,19 +6,10 @@
     height: 100%;
     padding: 3%;
 }
-.register:before{
-    content: "";
-    width: 100%;
-    height: 110%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    background: -webkit-linear-gradient(left, #05dc050b, #4000ff12);
-    z-index: 0;
-}
+
 .test{
     z-index: 3;
-    margin-top: 6%;
+    margin-top: 10px;
 }
 
 .register-left{

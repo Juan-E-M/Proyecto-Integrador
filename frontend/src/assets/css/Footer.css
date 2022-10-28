@@ -1,0 +1,36 @@
+.loged{
+    margin-top: 100px;
+  }
+  
+  .footer-9938{
+    padding-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+ 
+  
+  .footer-9938 a{
+    text-decoration: none;
+  }
+  
+  .general-container{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+  }
+  
+  .logo-footer{
+    width: 90px;
+    height : 90px;
+  }
+  
+  .logo-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .list-unstyled li{
+    margin-bottom: 10px;
+  }

@@ -11,13 +11,14 @@ import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
 import CheckoutPage from './Components/Checkout/CheckoutPage';
 import Checkout from './Components/Checkout/CheckoutForm/Checkout';
+import Footer from './Components/LandingPage/Footer';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Header/>
       <Routes>
-        <Route path='/' element={ <Header/> }>
           <Route path='/' element={ <Home/> } />
           <Route path='productos' element={ <Productos/> } />
           <Route path='nosotros' element={ <Nosotros/> } />
@@ -26,8 +27,8 @@ function App() {
           <Route path='checkout' element={ <CheckoutPage/> } />
           <Route path='pago' element={ <Checkout/> } />
           <Route path='*' element={ <Navigate replace to="/"/> } />
-        </Route>
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
   );
