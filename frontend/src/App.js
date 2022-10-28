@@ -10,6 +10,7 @@ import Nosotros from "./Components/LandingPage/Nosotros";
 import Login from "./Components/LandingPage/Login";
 import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
+import Proyectos from './Components/LandingPage/Proyectos';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={ <Home/> } />
           <Route path='productos' element={ <Productos/> } />
           <Route path='nosotros' element={ <Nosotros/> } />
+          <Route path='proyectos' element={ <Proyectos/> } />
           <Route path='login' element={ <Login/> } />
           <Route path='register' element={ <Register/> } />
           <Route path='*' element={ <Navigate replace to="/"/> } />

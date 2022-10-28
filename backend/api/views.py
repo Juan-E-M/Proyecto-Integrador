@@ -66,7 +66,7 @@ class ProductosDetailView(APIView):
         dataProductos.delete()
         return Response(serProductos.data)
 
-#########################################################################3
+#########################################################################
 class UsuariosView(APIView):
     def get(self, request):
         data = Usuarios.objects.all()
@@ -99,3 +99,37 @@ class UsuarioDetailView(APIView):
         serUsuarios = UsuariosSerializer(dataUsuarios)
         dataUsuarios.delete()
         return Response(serUsuarios.data)
+
+#########################################################################
+class ProyectosView(APIView):
+    def get(self, request):
+        data = Proyectos.objects.all()
+        serProyectos = ProyectosSerializer(data, many=True)
+        return Response(serProyectos.data)
+
+    def post(self, request):
+        serProyectos = ProyectosSerializer(data=request.data)
+        serProyectos.is_valid(raise_exception=True)
+        serProyectos.save()
+
+        return Response(serProyectos.data)
+
+class ProyectoDetailView(APIView):
+
+    def get(self, request, proyecto_id):
+        dataProyectos = Proyectos.objects.get(pk=proyecto_id)
+        serProyectos = ProyectosSerializer(dataProyectos)
+        return Response(serProyectos.data)
+
+    def put(self, request, proyecto_id):
+        dataProyectos = Proyectos.objects.get(pk=proyecto_id)
+        serProyectos = ProyectosSerializer(dataProyectos, data=request.data)
+        serProyectos.is_valid(raise_exception=True)
+        serProyectos.save()
+        return Response(serProyectos.data)
+
+    def delete(self, request, proyecto_id):
+        dataProyectos = Proyectos.objects.get(pk=proyecto_id)
+        serProyectos = ProyectosSerializer(dataProyectos)
+        dataProyectos.delete()
+        return Response(serProyectos.data)
