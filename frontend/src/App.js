@@ -1,4 +1,3 @@
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,6 +10,7 @@ import Login from "./Components/LandingPage/Login";
 import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
 import CheckoutPage from './Components/Checkout/CheckoutPage';
+import Checkout from './Components/Checkout/CheckoutForm/Checkout';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path='login' element={ <Login/> } />
           <Route path='register' element={ <Register/> } />
           <Route path='checkout' element={ <CheckoutPage/> } />
+          <Route path='pago' element={ <Checkout/> } />
           <Route path='*' element={ <Navigate replace to="/"/> } />
         </Route>
       </Routes>
