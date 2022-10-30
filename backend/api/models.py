@@ -7,6 +7,7 @@ class Productos(models.Model):
     categoria = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits = 7,decimal_places=2)
     img = models.CharField(max_length=500)
+    pub_date = models.DateTimeField('Date Published', null=True)
 
     def __str__(self):
         return self.nombre
@@ -19,6 +20,8 @@ class Usuarios(models.Model):
     address = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
     perfil_image = models.ImageField(upload_to="users", null=True)
+    pub_date = models.DateTimeField('Date Published', null=True)
+    
     def __str__(self):
         return self.username
 
@@ -26,6 +29,7 @@ class Proyectos(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
     imagen = models.CharField(max_length=500)
+    pub_date = models.DateTimeField('Date Published', null=True)
 
     def __str__(self):
         return self.titulo
