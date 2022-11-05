@@ -70,8 +70,8 @@ class Productos extends Component {
    
         return (
         <div className = "Productos">
-            <div className="container py-3">
-                <div className="row row-cols-1 row-cols-md-4 g-4">  {
+            <div className="container ">
+                <div className="row row-cols-1 row-cols-md-4 g-4 py-3">  {
                 items.map((item) => ( 
                     <div class="col">
                         <div className="card me-5">

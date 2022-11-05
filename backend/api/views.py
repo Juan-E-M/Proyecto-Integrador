@@ -32,6 +32,41 @@ class IndexView(APIView):
         context = {'mensaje':'servidor activo'}
         return Response(context)
     
+class CategoriasView(APIView):
+    
+    def get(self,request):
+        dataCategorias = Categorias.objects.all()
+        serCategorias = CategoriasSerializer(dataCategorias,many=True)
+        return Response(serCategorias.data)
+    
+    def post(self,request):
+        serCategorias = CategoriasSerializer(data=request.data)
+        serCategorias.is_valid(raise_exception=True)
+        serCategorias.save()
+        
+        return Response(serCategorias.data)
+    
+class CategoriasDetailView(APIView):
+    
+    def get(self,request,categoria_id):
+        dataCategorias = Categorias.objects.get(pk=categoria_id)
+        serCategorias = CategoriasSerializer(dataCategorias)
+        return Response(serCategorias.data)
+    
+    def put(self,request,categoria_id):
+        dataCategorias = Categorias.objects.get(pk=categoria_id)
+        serCategorias = CategoriasSerializer(dataCategorias,data=request.data)
+        serCategorias.is_valid(raise_exception=True)
+        serCategorias.save()
+        return Response(serCategorias.data)
+    
+    def delete(self,request,categoria_id):
+        dataCategorias = Categorias.objects.get(pk=categoria_id)
+        serCategorias = CategoriasSerializer(dataCategorias)
+        dataCategorias.delete()
+        return Response(serCategorias.data)
+
+ ##############################################################################   
 class ProductosView(APIView):
     
     def get(self,request):

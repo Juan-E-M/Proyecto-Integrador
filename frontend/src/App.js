@@ -11,6 +11,7 @@ import Login from "./Components/LandingPage/Login";
 import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
 import Producto from './Components/Productos/Producto';
+import Informacion from './Components/Informacion/Informacion';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={ <Header/> }>
-          <Route path='/' element={ <Home/> } />
+          <Route path='/' element={ <Informacion/> } />
           <Route path='productos' element={ <Productos/> } />
           <Route path='productos/:id' element={ <Producto/> } />
           <Route path='nosotros' element={ <Nosotros/> } />
