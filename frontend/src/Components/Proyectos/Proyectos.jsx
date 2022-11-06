@@ -1,9 +1,7 @@
 import Button from 'react-bootstrap/Button';
-//import ReactDOM from 'react-dom'
 import React,{ Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// probar
+import { Link} from 'react-router-dom';
 
 function UserGreeting(props) {
     return <h1>Welcome back!</h1>;
@@ -21,10 +19,6 @@ function Greeting(props) {
     return <GuestGreeting />;
 }
   
-//const root = ReactDOM.createRoot(document.getElementById('root')); 
-// Intentar cambiando isLoggedIn={true}:
-//root.render(<Greeting isLoggedIn={false} />);
-
 function LoginButton(props) {
     return (
         <Button onClick={props.onClick}>
@@ -43,7 +37,7 @@ function LoginButton(props) {
 
 function InscribirseButton(props) {
     return (
-        <Button onClick={props.onClick} variant="primary">Inscribirse</Button>
+        <Button href="/proyectos/${item.id}" onClick={props.onClick} variant="primary">Inscribirse</Button>
     );
 } //probar
 
@@ -118,13 +112,7 @@ class Proyectos extends Component {
         button = <LoginButton onClick={this.handleLoginClick} />;
         buttonInscripcion = <InscribirseButton/>
       }  //probar
-/*
-      if (isInscrito) { 
-        buttonInscripcion = <AnularButton onClick={this.handleAnularClick}/>;
-      } else {
-        buttonInscripcion = <InscribirseButton onClick={this.handleInscribirseClick}/>
-      }  //probar
-*/
+
       if (!DataisLoaded) return <div>
           <h1> Pleses wait some time.... </h1> </div> ;
  
@@ -137,19 +125,17 @@ class Proyectos extends Component {
               items.map((item) => ( 
                   <div class="col">
                       <div className="card me-5">
-                          <img className="card-img-top" src={item.imagen} alt={item.id}/>
-                          <div className="card-body">
-                              <h5 className="card-title">{item.titulo}</h5>
-                              <p class="card-text">{item.descripcion}</p>
-                              
+                        <img className="card-img-top imagen" src={item.imagen} alt={item.id} />
+                        <div className="card-body">
+                            <h5 className="card-title">{item.titulo}</h5>
+                            <p class="card-text">{item.descripcion}</p>
+                            <Link to={`/proyectos/${item.id}`}>
                               {buttonInscripcion}
-                              
-                              {console.log(item)}
-                              
-                          </div>
-                          <div className="card-footer">
-                            <small className="text-muted">Evento</small>                          
-                          </div>
+                            </Link>                               
+                        </div>
+                        <div className="card-footer">
+                          <small className="text-muted">Evento</small>                          
+                        </div>
                       </div>
                   </div>
               ))
