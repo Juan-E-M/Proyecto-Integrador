@@ -14,5 +14,5 @@ urlpatterns = [
     path('api/usuarios/<int:usuario_id>', views.UsuarioDetailView.as_view()),
     #Proyectos
     path('api/proyectos', views.ProyectosView.as_view()),
-    path('api/usuarios/<int:usuario_id>', views.ProyectoDetailView.as_view())
+    path('api/proyectos/<int:proyecto_id>', views.ProyectoDetailView.as_view())
 ]
