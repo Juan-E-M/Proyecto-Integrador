@@ -34,6 +34,7 @@ router.register(r'tasks',views.ProductosView, 'task')
 urlpatterns = [
     path('', include('api.urls')),
     path('admin/', admin.site.urls),
+
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,14 @@
+.login{
+    padding: 50px;
+}
+button{
+    margin-top: 10px;
+}
+
+.signup{
+    margin-top: 10px;
+}
+.signup button{
+    border: none;
+    background: none;
+}

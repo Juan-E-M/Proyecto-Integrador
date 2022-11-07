@@ -1,4 +1,4 @@
-'''from django.shortcuts import render
+'''
   
 # import view sets from the REST framework
 from rest_framework import viewsets
@@ -20,8 +20,11 @@ class ProductosView(viewsets.ModelViewSet):
     # with the Todo list objects
     queryset = Productos.objects.all()
 '''
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
 from .models import *
 from .serializers import *
@@ -66,6 +69,37 @@ class ProductosDetailView(APIView):
         dataProductos.delete()
         return Response(serProductos.data)
 
+######################################################################3####
+'''
+from django.http import JsonResponse
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.decorators import api_view
+
+@api_view(['GET'])
+def getRoutes(request):
+    routes = [
+        '/api/token',
+        '/api/token/refresh',
+    ]
+
+    return JsonResponse(routes, safe=False)
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        # ...
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+'''
 #########################################################################3
 class UsuariosView(APIView):
     def get(self, request):
@@ -100,3 +134,37 @@ class UsuarioDetailView(APIView):
         serUsuarios = UsuariosSerializer(dataUsuarios)
         dataUsuarios.delete()
         return Response(serUsuarios.data)
+
+#########################################################################3
+class ComprasView(APIView):
+    def get(self, request):
+        data = Compras.objects.all()
+        serCompras = ComprasSerializer(data, many=True)
+        return Response(serCompras.data)
+
+    def post(self, request):
+        serCompras = ComprasSerializer(data=request.data)
+        serCompras.is_valid(raise_exception=True)
+        serCompras.save()
+
+        return Response(serCompras.data)
+
+class CompraDetailView(APIView):
+
+    def get(self, request, compra_id):
+        dataCompras = Compras.objects.get(pk=compra_id)
+        serCompras = ComprasSerializer(dataCompras)
+        return Response(serCompras.data)
+
+    def put(self, request, compra_id):
+        dataCompras = Compras.objects.get(pk=compra_id)
+        serCompras = ComprasSerializer(dataCompras, data=request.data)
+        serCompras.is_valid(raise_exception=True)
+        serCompras.save()
+        return Response(serCompras.data)
+
+    def delete(self, request, compra_id):
+        dataCompras = Compras.objects.get(pk=compra_id)
+        serCompras = ComprasSerializer(dataCompras)
+        serCompras.delete()
+        return Response(serCompras.data)

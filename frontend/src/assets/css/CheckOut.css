@@ -1,0 +1,10 @@
+.check{
+    padding-top: 50px;
+    padding-bottom: 100px;
+    background-image: url("https://us.123rf.com/450wm/kritchanut/kritchanut1701/kritchanut170100002/70340310-madera-tablero-de-la-mesa-de-desenfoque-de-fondo-verde-de-los-%C3%A1rboles-en-el-parque-se-puede-utilizar.jpg");
+    background-size: cover;
+}
+
+.checkout{
+    z-index: 3;
+}

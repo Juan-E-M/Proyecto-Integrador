@@ -17,3 +17,12 @@ class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
         fields = ('id','username','first_name','last_name','password','address','perfil_image','email')
+
+class ComprasSerializer(serializers.ModelSerializer):
+    # create a meta class
+    class Meta:
+        model = Compras
+        fields = ('id', 'user_id', 'username','descripcion_compra',
+                  'distrito','provincia','departamento','first_name',
+                  'total', 'last_name', 'send_address','send_email',
+                  'full_name_card','card_number','exp_date','cod')

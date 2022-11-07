@@ -5,12 +5,16 @@ import logo from '../../assets/logo/logo.png';
 import '../../assets/css/Header.css'
 import { FaShoppingCart } from 'react-icons/fa';
 import { useStateValue } from "../../StateProvider";
+import { useContext } from "react";
 import {  Link, Outlet } from "react-router-dom";
+import AuthContext2 from '../Context/AuthContext2';
+
+
 
 const NavBar = () => {
 
+  let {usuario, logoutUser} = useContext(AuthContext2);
   const[{basket}, dispatch] =useStateValue();
-
   return (
     <> 
     <Navbar className='navBg' bg="light" expand="lg">
@@ -22,9 +26,18 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/  ">Home</Nav.Link>
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
-            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+
+            {usuario != null ? (
+                <Nav.Link onClick={()=>{
+                  logoutUser()
+                }}>Log Out</Nav.Link>
+                ) : (
+                    <Nav.Link as={Link} to = "/login"> Login </Nav.Link>
+                )}
+
+            
             <Nav.Link as={Link} to="/register">Sign up</Nav.Link>
-            <Nav.Link as={Link} to="/checkout"><FaShoppingCart/> {basket?.length}</Nav.Link>
+            <Nav.Link as={Link} to="/checkout"><FaShoppingCart/> <span className="badge bg-success rounded-pill">{basket?.length}</span></Nav.Link>
             
           </Nav>
         </Navbar.Collapse>

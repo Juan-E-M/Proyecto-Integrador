@@ -23,7 +23,7 @@ const Product = ({item}) => {
       <img className="card-img-top" src={item.img} alt={item.id} />
       <div className="card-body">
         <h5 className="card-title">{item.nombre}</h5>
-        <p class="card-text">{item.descripcion}</p>
+        <p className="card-text">{item.descripcion}</p>
         <p className="card-text">S/. {item.precio}</p>
         <a className="btn btn-primary"
             onClick={addToBasket}>Añadir al carrito</a>
