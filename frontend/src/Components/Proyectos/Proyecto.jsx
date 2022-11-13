@@ -38,7 +38,9 @@ const Proyecto = () => {
                             <div class="card-body py-5 px-5">
                                 <h5 class="card-title">{proyectos.titulo}</h5>
                                 <p class="card-text">{proyectos.descripcion}</p>
+                                <p class="card-text">{proyectos.lugar}</p>
                                 <p class="card-text">Fecha del Evento: {date}</p>
+                                {console.log(proyectos)}
                                 {console.log(proyectos.fecha)}
                                 {console.log(date)}
                                 <a href="#" class="btn btn-primary">Inscribirse</a>

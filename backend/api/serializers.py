@@ -22,4 +22,4 @@ class ProyectosSerializer(serializers.ModelSerializer):
     # create a meta class
     class Meta:
         model = Proyectos
-        fields = ('id','titulo','descripcion','imagen', 'fecha','pub_date')
+        fields = ('id','titulo','descripcion','lugar','imagen', 'fecha','pub_date')
