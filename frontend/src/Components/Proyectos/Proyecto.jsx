@@ -18,9 +18,15 @@ const Proyecto = () => {
         const data =  await fetch('http://127.0.0.1:8000/api/proyectos/'+id)
         const proyectos = await data.json()
         setProyectos(proyectos)
+        
     }
 
-    
+    let timestamp = new Date(proyectos.fecha).getTime();
+    let day = new Date(timestamp).getDate();
+    //let month = new Date(timestamp).getMonth() + 1;
+    let month = new Date(timestamp).toLocaleString('default', { month: 'long' });
+    let year = new Date(timestamp).getFullYear();
+    let date = `${day} de ${month} del año ${year}.`;
 
     return (
         <div className = "Proyecto">
@@ -32,6 +38,9 @@ const Proyecto = () => {
                             <div class="card-body py-5 px-5">
                                 <h5 class="card-title">{proyectos.titulo}</h5>
                                 <p class="card-text">{proyectos.descripcion}</p>
+                                <p class="card-text">Fecha del Evento: {date}</p>
+                                {console.log(proyectos.fecha)}
+                                {console.log(date)}
                                 <a href="#" class="btn btn-primary">Inscribirse</a>
                             </div>
                         </div>

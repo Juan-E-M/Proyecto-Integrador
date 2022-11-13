@@ -20,7 +20,7 @@ admin.site.register(Productos,ProductosAdmin)
 class ProyectosAdmin(admin.ModelAdmin):
   
     # add the fields of the model here
-    list_display = ("titulo","descripcion","imagen","fecha","pub_date")
+    list_display = ("titulo","descripcion","lugar","imagen","fecha","pub_date")
   
 # we will need to register the
 # model class and the Admin model class
