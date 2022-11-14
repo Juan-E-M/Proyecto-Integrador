@@ -178,6 +178,17 @@ class ProyectoDetailView(APIView):
         dataProyectos.delete()
         return Response(serProyectos.data)
 
+class Tcontrol_plasticoView(APIView):
+    def get(self, request):
+        data = Tcontrol_plastico.objects.all()
+        res = Tcontrol_plasticoSerializer(data, many=True)
+        return Response(res.data)
+    def post(self, request):
+        res = Tcontrol_plasticoSerializer(data=request.data)
+        res.is_valid(raise_exception=True)
+        res.save()
+        return Response(res.data)
+
 class RplasticoView(APIView):
     def get(self, request, user_id):
         inicio = request.data['inicio']
@@ -186,6 +197,17 @@ class RplasticoView(APIView):
         res_final = Tcontrol_plasticoSerializer(res, many=True)
         return Response(res_final.data)
 
+
+class Tcontrol_vidrioView(APIView):
+    def get(self, request):
+        data = Tcontrol_vidrio.objects.all()
+        res = Tcontrol_vidrioSerializer(data, many=True)
+        return Response(res.data)
+    def post(self, request):
+        res = Tcontrol_vidrioSerializer(data=request.data)
+        res.is_valid(raise_exception=True)
+        res.save()
+        return Response(res.data)
 class RvidrioView(APIView):
     def get(self, request, user_id):
         inicio = request.data['inicio']
@@ -194,6 +216,16 @@ class RvidrioView(APIView):
         res_final = Tcontrol_vidrioSerializer(res, many=True)
         return Response(res_final.data)
 
+class Tcontrol_papelView(APIView):
+    def get(self, request):
+        data = Tcontrol_papel.objects.all()
+        res = Tcontrol_papelSerializer(data, many=True)
+        return Response(res.data)
+    def post(self, request):
+        res = Tcontrol_papelSerializer(data=request.data)
+        res.is_valid(raise_exception=True)
+        res.save()
+        return Response(res.data)
 class RpapelView(APIView):
     def get(self, request, user_id):
         inicio = request.data['inicio']

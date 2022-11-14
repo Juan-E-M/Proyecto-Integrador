@@ -21,5 +21,10 @@ urlpatterns = [
     path('api/proyectos', views.ProyectosView.as_view()),
     path('api/proyectos/<int:proyecto_id>', views.ProyectoDetailView.as_view()),
     #Registros
-    path('api/rplastico/<int:user_id>', views.RplasticoView.as_view())
+    path('api/rplastico/', views.Tcontrol_plasticoView.as_view()),
+    path('api/rplastico/<int:user_id>', views.RplasticoView.as_view()),
+    path('api/rvidrio/', views.Tcontrol_vidrioView.as_view()),
+    path('api/rvidrio/<int:user_id>', views.RvidrioView.as_view()),
+    path('api/rpapel/', views.Tcontrol_papelView.as_view()),
+    path('api/rpapel/<int:user_id>', views.RpapelView.as_view())
 ]
