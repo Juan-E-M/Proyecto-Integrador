@@ -1,26 +1,39 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
-class Productos(models.Model):
-    nombre=models.CharField(max_length=100)
-    descripcion=models.CharField(max_length=500)
-    categoria=models.CharField(max_length=100)
-    precio=models.DecimalField(max_digits = 7,decimal_places=2)
-    img=models.CharField(max_length=500)
+
+class Usuarios(AbstractUser):
+    username=models.CharField(max_length=255,unique=True)
+    password = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255, unique=True)
+    first_name=models.CharField(max_length=255)
+    last_name=models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    perfil_image = models.ImageField(upload_to="users", null=True)
+    USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+class Categorias(models.Model):
+    nombre=models.CharField(max_length=200)
+    pub_date=models.DateTimeField('date published')
 
     def __str__(self):
         return self.nombre
 
-class Usuarios(models.Model):
-    username=models.CharField(max_length=50)
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
-    password=models.CharField(max_length=16)
-    address = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    perfil_image = models.ImageField(upload_to="users", null=True)
+class Productos(models.Model):
+    nombre=models.CharField(max_length=100)
+    descripcion=models.CharField(max_length=500)
+    categoria=models.ForeignKey(Categorias,on_delete=models.CASCADE)
+    '''categoria=models.CharField(max_length=100)'''
+    precio=models.DecimalField(max_digits = 7,decimal_places=2)
+    img1=models.CharField(max_length=500)
+    img2=models.CharField(max_length=500)
+    img3=models.CharField(max_length=500)
+    pub_date=models.DateTimeField('date published')
+
     def __str__(self):
-        return self.username
+        return self.nombre
 
 class Compras(models.Model):
 
@@ -41,3 +54,28 @@ class Compras(models.Model):
     cod = models.CharField(max_length=3)
     def __str__(self):
         return self.username
+
+class Proyectos(models.Model):
+    titulo = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=50)
+    lugar = models.CharField(max_length=50, null=True)
+    imagen = models.CharField(max_length=500)
+    fecha = models.DateTimeField('Fecha del Evento', null=True)
+    pub_date = models.DateTimeField('Date Published', null=True)
+    def __str__(self):
+        return self.titulo
+
+class Tcontrol_plastico(models.Model):
+    user_id = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    porcentaje = models.FloatField()
+    reg_date = models.DateTimeField('fecha')
+
+class Tcontrol_vidrio(models.Model):
+    user_id = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    porcentaje = models.FloatField()
+    reg_date = models.DateTimeField('fecha')
+
+class Tcontrol_papel(models.Model):
+    user_id = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    porcentaje = models.FloatField()
+    reg_date = models.DateTimeField('fecha')

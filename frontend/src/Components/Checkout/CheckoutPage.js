@@ -30,7 +30,7 @@ const CheckoutPage = () => {
         <div className="container text-center">
           <div className="row h-75">
             <div className="col">
-              <h1>Shopping Cart</h1>
+              <h1>Shopping Kart</h1>
             </div>
           </div>
           <div className="row">

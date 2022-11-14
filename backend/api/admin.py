@@ -1,17 +1,30 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
-# import the model Todo
-from .models import Productos
-  
-# create a class for the admin-model integration
+class CategoriasAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "pub_date")
+
+
 class ProductosAdmin(admin.ModelAdmin):
-  
-    # add the fields of the model here
-    list_display = ("nombre","descripcion","categoria","precio","img")
-  
-# we will need to register the
-# model class and the Admin model class
-# using the register() method
-# of admin.site class
-admin.site.register(Productos,ProductosAdmin)
+    list_display = ("nombre", "descripcion", "categoria", "precio", "img1", "img2", "img3", "pub_date")
+
+
+class ProyectosAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "descripcion", "lugar", "imagen", "fecha", "pub_date")
+
+class Tcontrol_plasticoAdmin(admin.ModelAdmin):
+    list_display = ("user_id", "porcentaje", "reg_date")
+
+class Tcontrol_vidrioAdmin(admin.ModelAdmin):
+    list_display = ("user_id", "porcentaje", "reg_date")
+
+class Tcontrol_papelAdmin(admin.ModelAdmin):
+    list_display = ("user_id", "porcentaje", "reg_date")
+
+
+admin.site.register(Tcontrol_plastico, Tcontrol_plasticoAdmin)
+admin.site.register(Tcontrol_vidrio, Tcontrol_vidrioAdmin)
+admin.site.register(Tcontrol_papel, Tcontrol_papelAdmin)
+admin.site.register(Proyectos, ProyectosAdmin)
+admin.site.register(Categorias, CategoriasAdmin)
+admin.site.register(Productos, ProductosAdmin)

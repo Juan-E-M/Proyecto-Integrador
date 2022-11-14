@@ -14,7 +14,7 @@ export const Auth2Provider = ({children}) => {
     let register = async (e) => {
         e.preventDefault()
 
-        let result = await fetch("http://127.0.0.1:8000/api/usuarios",
+        let result = await fetch("http://127.0.0.1:8000/api/usuarios/register",
             {
                 method:'POST',
                 body:JSON.stringify(
@@ -37,8 +37,8 @@ export const Auth2Provider = ({children}) => {
 
         localStorage.setItem("user",result.id);
         localStorage.setItem("username",result.username);
-        setUsuario(JSON.stringify(result))
-        localStorage.setItem("usuario",usuario);
+        localStorage.setItem("usuario",JSON.stringify(result));
+        setUsuario(result)
         if(result.id){
             history("/")
         }

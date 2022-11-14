@@ -1,5 +1,6 @@
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
+import {  Link} from 'react-router-dom';
 
 const Product = ({item}) => {
 
@@ -9,7 +10,7 @@ const Product = ({item}) => {
             item: {
                 id:item.id,
                 nombre: item.nombre,
-                img: item.img,
+                img1: item.img1,
                 precio: parseFloat(item.precio),
                 categoria:item.categoria,
                 descripcion: item.descripcion
@@ -20,14 +21,13 @@ const Product = ({item}) => {
 
   return (
     <div className="card me-5">
-      <img className="card-img-top" src={item.img} alt={item.id} />
-      <div className="card-body">
-        <h5 className="card-title">{item.nombre}</h5>
-        <p className="card-text">{item.descripcion}</p>
-        <p className="card-text">S/. {item.precio}</p>
-        <a className="btn btn-primary"
-            onClick={addToBasket}>Añadir al carrito</a>
-      </div>
+      <Link to={`/productos/${item.id}`}><img className="card-img-top imagen" src={item.img1} alt={item.id} /></Link>
+        <div className="card-body">
+          <h5 className="card-title">{item.nombre}</h5>
+          <p className="card-text">S/. {item.precio}</p>
+          <a className="btn btn-primary"
+              onClick={addToBasket}>Añadir al carrito</a>
+        </div>
       <div className="card-footer">
         <small className="text-muted">{item.categoria}</small>
       </div>

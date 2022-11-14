@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
 import Header from "./Components/LandingPage/Header";
-import Home from "./Components/LandingPage/Home";
 import Nosotros from "./Components/LandingPage/Nosotros";
 import Register from './Components/Register/Register';
 import Productos from './Components/Productos/Productos';
@@ -15,6 +14,11 @@ import LoginPage from './Components/Login/LoginPage';
 import { AuthProvider } from "./Components/Context/AuthContext";
 import PrivateRoutes from './Components/utils/PrivateRoutes';
 import {Auth2Provider} from "./Components/Context/AuthContext2"
+import Informacion from './Components/LandingPage/Informacion';
+import Producto from './Components/Productos/Producto';
+import Proyecto from './Components/Proyectos/Proyecto';
+import Proyectos from './Components/Proyectos/Proyectos';
+import Profile from './Components/Usuario/Profile';
 
 function App() {
 
@@ -22,28 +26,24 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Auth2Provider>
-          <AuthProvider>
+        <AuthProvider>
         <Header/>
           <Routes>
-              <Route path='/' element={ <Home/> } />
-
+              <Route path='/' element={ <Informacion/> } />
               <Route path='/productos' element={ <Productos/> } />
+              <Route path='productos/:id' element={ <Producto/> } />
+              <Route path='proyectos' element={ <Proyectos/> } />
+              <Route path='proyectos/:id/' element={ <Proyecto/> } />
               <Route path='/nosotros' element={ <Nosotros/> } />
-
               <Route path='/login' element={ <LoginPage/> } />
-
-              
               <Route path='/register' element={ <Register/> } />
-
               <Route path='/checkout' element={ <CheckoutPage/> } />
               <Route path='/pago' element={ <Checkout/> } />
+              <Route path='/profile' element={ <Profile/> } />
               <Route path='*' element={ <Navigate replace to="/"/> } />
           </Routes>
           <Footer/>
           </AuthProvider>
-        </Auth2Provider>
-        
       </BrowserRouter>
     </div>
   );

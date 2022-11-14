@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import '../../../assets/css/CheckOut.css'
 import { useStateValue } from "../../../StateProvider";
 import { getBasketTotal } from "../../../reducer";
@@ -7,11 +7,13 @@ import '../../../assets/css/CheckOut.css';
 import { useNavigate } from "react-router-dom";
 import { actionTypes } from "../../../reducer";
 import swal from 'sweetalert';
+import AuthContext from "../../Context/AuthContext";
+import { useRadioGroup } from "@mui/material";
 
 const Checkout = () =>{
   let history = useNavigate()
   const[{basket}, dispatch] =useStateValue();
-  const [usuario, setUsuario] = useState(localStorage.getItem("username"));
+  let {user} = useContext(AuthContext);
 
   //Descripcion
   /*
@@ -29,11 +31,9 @@ const Checkout = () =>{
     desc.push(item)
   });
 
-
-  
   //DATA
-  const [user_id,setUser_id]=useState(parseInt(localStorage.getItem("user")))
-  const [username, setUsername]=useState(localStorage.getItem("username"))
+  const [user_id,setUser_id]=useState(parseInt(user.id))
+  const [username, setUsername]=useState(user.username)
   const [first_name, setFirst_name]=useState("")
   const [total, setTotal]=useState(getBasketTotal(basket))
   const [last_name, setLast_name]=useState("")
@@ -59,7 +59,6 @@ const Checkout = () =>{
     let item = {user_id,username,first_name,total,last_name,descripcion_compra,
       send_email,full_name_card,card_number,exp_date,cod,send_address,departamento,provincia,distrito}
       console.warn(item);
-    
     let result = await fetch("http://127.0.0.1:8000/api/compras",
     {
         method:'POST',
@@ -69,7 +68,6 @@ const Checkout = () =>{
             "Accept": "application/json"
         }
     })
-
     result = await result.json();
     console.warn("result",result);
     swal("¡FELICITACIONES!", "Gracias por su compra", "success");
@@ -77,8 +75,6 @@ const Checkout = () =>{
     history("/productos")
 
   }
-
-
 
     return(
     <div>
@@ -124,7 +120,7 @@ const Checkout = () =>{
               <label className="form-label">Username</label>
               <div className="input-group has-validation">
                 <span className="input-group-text">@</span>
-                <input type="text" className="form-control" name="username" value={usuario} required readOnly="readOnly"/>
+                <input type="text" className="form-control" name="username" value={user.username} required readOnly="readOnly"/>
               </div>
             </div>
 

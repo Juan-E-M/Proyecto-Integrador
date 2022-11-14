@@ -1,15 +1,17 @@
 import React from "react";
+import { useContext } from "react";
 import { getBasketTotal } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"; 
+import AuthContext from "../Context/AuthContext";
 
 
 
 const Total = ({ estado1, setEstado1}) => {
-
+  let {user} = useContext(AuthContext);
   let history = useNavigate()
   function handleClick() {
-    if(localStorage.getItem('user')){
+    if(user){
       history("/pago")
     }else{
       setEstado1(!estado1)

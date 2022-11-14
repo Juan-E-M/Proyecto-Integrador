@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import '../../assets/css/Register.css';
 import { useNavigate } from "react-router-dom";
-import AuthContext2 from '../Context/AuthContext2';
+import AuthContext from '../Context/AuthContext';
 
 
 function Register(){
-    const { register } = useContext(AuthContext2);
+    const { register } = useContext(AuthContext);
 
 
     let history = useNavigate()
@@ -13,7 +13,6 @@ function Register(){
         <div className="container register">
                 <div className="row test">
                     <div className="col-md-3 register-left">
-                        <img src="" alt=""/>
                         <h2>Welcome</h2>
                         <p>¡Estás a punto de comenzar!</p>
                         <button type="button" className="btn btn-light" onClick={()=>{history("/login")}}>Login</button><br/>

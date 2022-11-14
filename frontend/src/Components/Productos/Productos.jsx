@@ -70,7 +70,7 @@ class Productos extends Component {
         return (
         <div className = "Productos">
             <div className="container">
-                <div className="row row-cols-1 row-cols-md-4 g-4">  {
+                <div className="row row-cols-1 row-cols-md-4 g-4 py-3">  {
                 items.map((item) => ( 
                     <div className="col">
                         <Product key={item.id} item={item}/>

@@ -1,0 +1,20 @@
+.Informacion{
+    text-align: center;
+}
+.carruselinfo{
+    width: 100%;
+    object-fit: cover;
+    padding-bottom: 4em;
+}
+.carousel-item{
+    height: 30em;
+}
+.fw-light, .lead{
+    color: aliceblue;
+}
+main{
+    background-color: #39784D;
+}
+.informacion-margin{
+    padding: 2em;
+}

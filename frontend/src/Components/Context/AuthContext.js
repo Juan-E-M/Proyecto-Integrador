@@ -8,7 +8,6 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
 
-
     let [user , setUser] = useState( () => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null);
     let [authTokens , setAuthTokens] = useState( () => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
 
@@ -18,9 +17,7 @@ export const AuthProvider = ({children}) => {
     let loginUser = async (e) => {
         e.preventDefault()
 
-        // console.warn("Form submited")
-        // console.log("asdasdasd");
-        let response = await fetch('http://127.0.0.1:8000/api/token/' , {
+        let response = await fetch('http://localhost:8000/api/usuarios/login' , {
             method: 'POST',
             headers:{
                 'Content-Type' : 'application/json'
@@ -33,7 +30,8 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens' , JSON.stringify(data))
-            navigate('/nosotros')
+            localStorage.setItem("user",JSON.stringify(jwt_decode(data.access)));
+            navigate('/')
 
         }else{
             alert('Something went wrong')
@@ -43,18 +41,56 @@ export const AuthProvider = ({children}) => {
         //1:13
     }
 
+    let register = async (e) => {
+        e.preventDefault()
+        setAuthTokens(null)
+        setUser(null)
+
+        let result = await fetch("http://127.0.0.1:8000/api/usuarios/register",
+            {
+                method:'POST',
+                body:JSON.stringify(
+                    {'username': e.target.username.value,
+                     'email': e.target.email.value,
+                     'password': e.target.password.value,
+                     'first_name': e.target.email.value,
+                     'last_name': e.target.last_name.value,
+                     'address':e.target.address.value
+
+                }),
+                headers:{
+                    "Content-Type":"application/json",
+                    "Accept": "application/json"
+                }
+            })
+
+        result = await result.json();
+        console.warn("result",result);
+
+        //localStorage.setItem("user",result.id);
+        localStorage.setItem("username",result.username);
+        localStorage.setItem("user",JSON.stringify(result));
+        setUser(result)
+        if(result.id){
+            navigate("/")
+        }
+        
+    }
+
     let logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
+        localStorage.removeItem("user");
+        localStorage.removeItem("username");
         navigate('/login')
     }
-
 
     let contextData = {
         user:user,
         loginUser:loginUser,
-        logoutUser : logoutUser
+        logoutUser : logoutUser,
+        register: register
     }
 
     return(
