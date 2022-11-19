@@ -38,41 +38,36 @@ class LoginView(APIView):
             'access':token
         })
 
-#####################################################################################
-class CategoriasView(APIView):
+class LoginAndroidView(APIView):
+    def post(self,request):
+        if 'email' in request.data:
+            email = request.data['email']
+            user = Usuarios.objects.filter(email=email).first()
+        else:
+            username = request.data['username']
+            user = Usuarios.objects.filter(username=username).first()
+        password = request.data['password']
+        if user is None:
+            raise AuthenticationFailed('User o email not found')
+        if not user.check_password(password):
+            raise AuthenticationFailed('incorrect password')
+        serUser = UsuariosSerializer(user)
+        return Response(
+           serUser.data
+        )
 
+class UsuariosView(APIView):
     def get(self, request):
-        dataCategorias = Categorias.objects.all()
-        serCategorias = CategoriasSerializer(dataCategorias, many=True)
-        return Response(serCategorias.data)
+        dataUsuarios = Usuarios.objects.all()
+        serUsuarios = UsuariosSerializer(dataUsuarios, many=True)
+        return Response(serUsuarios.data)
 
-    def post(self, request):
-        serCategorias = CategoriasSerializer(data=request.data)
-        serCategorias.is_valid(raise_exception=True)
-        serCategorias.save()
+class UsuariosDetailView(APIView):
 
-        return Response(serCategorias.data)
-
-
-class CategoriasDetailView(APIView):
-
-    def get(self, request, categoria_id):
-        dataCategorias = Categorias.objects.get(pk=categoria_id)
-        serCategorias = CategoriasSerializer(dataCategorias)
-        return Response(serCategorias.data)
-
-    def put(self, request, categoria_id):
-        dataCategorias = Categorias.objects.get(pk=categoria_id)
-        serCategorias = CategoriasSerializer(dataCategorias, data=request.data)
-        serCategorias.is_valid(raise_exception=True)
-        serCategorias.save()
-        return Response(serCategorias.data)
-
-    def delete(self, request, categoria_id):
-        dataCategorias = Categorias.objects.get(pk=categoria_id)
-        serCategorias = CategoriasSerializer(dataCategorias)
-        dataCategorias.delete()
-        return Response(serCategorias.data)
+    def get(self, request, usuario_id):
+        dataUsuarios = Usuarios.objects.get(pk=usuario_id)
+        serUsuarios = UsuariosSerializer(dataUsuarios)
+        return Response(serUsuarios.data)
 
 ##############################################################################
 class ProductosView(APIView):
@@ -86,9 +81,14 @@ class ProductosView(APIView):
         serProductos = ProductosSerializer(data=request.data)
         serProductos.is_valid(raise_exception=True)
         serProductos.save()
-
         return Response(serProductos.data)
 
+class UltimoProductoView(APIView):
+    
+    def get(self, request):
+        prim_productos = Productos.objects.all().order_by('-pub_date')[:1]
+        serProductos = ProductosSerializer(prim_productos, many=True)
+        return Response(serProductos.data)
 
 class ProductosDetailView(APIView):
 
@@ -109,6 +109,7 @@ class ProductosDetailView(APIView):
         serProductos = ProductosSerializer(dataProductos)
         dataProductos.delete()
         return Response(serProductos.data)
+
 
 #########################################################################3
 class ComprasView(APIView):
@@ -178,6 +179,14 @@ class ProyectoDetailView(APIView):
         dataProyectos.delete()
         return Response(serProyectos.data)
 
+class UltimoProyectoView(APIView):
+    
+    def get(self, request):
+        prim_proyectos = Proyectos.objects.all().order_by('-pub_date')[:1]
+        serProyectos = ProyectosSerializer(prim_proyectos, many=True)
+        return Response(serProyectos.data)
+
+#########################################################################
 class Tcontrol_plasticoView(APIView):
     def get(self, request):
         data = Tcontrol_plastico.objects.all()

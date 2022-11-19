@@ -8,23 +8,31 @@ import {Link} from 'react-router-dom';
 
 const Informacion = () => {
     const [productos, setProductos] = useState([])
+    const [proyectos, setProyectos] = useState([])
+
     useEffect(()=>{
         obtenerDatos()
+        obtenerDatosProyectos()
     },[])
 
     const obtenerDatos = async () =>{
-        const data =  await fetch('http://127.0.0.1:8000/api/?format=json')
+        const data =  await fetch('http://127.0.0.1:8000/api/ultimo_producto?format=json')
         const productos = await data.json()
         setProductos(productos)
     }
-
+    const obtenerDatosProyectos = async () =>{
+        const data_proyectos =  await fetch('http://127.0.0.1:8000/api/proyectos/ultimo_proyecto?format=json')
+        const proyectos = await data_proyectos.json()
+        setProyectos(proyectos)
+    }
+/*
     var dicfechas = {};
     var arrayfechas = [];
     const ReturnFechaMasReciente = productos.map(function(producto) {
         var fechaprueba=producto.pub_date.substring(0, 10);
         var horaprueba=producto.pub_date.substr(11,8);
         var fecha_completa_prueba=fechaprueba.concat(" ", horaprueba);
-        /*
+        
         const fechas = new Date(fecha).toLocaleDateString();
         let arrayFechas = fechas.map((fechas_) => new Date(fechas_) );
         var max = new Date(Math.max.apply(null,arrayFechas));
@@ -46,7 +54,7 @@ const Informacion = () => {
         var min=Math.min.apply(null, arrayfechas);
         //buscar fecha en diccionario
         var valor = dicfechas[min];
-        */
+        
         return Moment(fecha_completa_prueba);//valor.toString();
     });
     var fecha=Moment.max(ReturnFechaMasReciente);
@@ -59,7 +67,7 @@ const Informacion = () => {
         return elemento.pub_date == fecha_completa // ◄ Aquí se desea que aplique el arreglo comparaciones 
     });
     console.log(encontrados);
-
+*/
     return (
         <main>
             <div className = "Producto">
@@ -77,49 +85,37 @@ const Informacion = () => {
 
             </div>
             <div className="d-flex justify-content-center">
-                <div id="carouselExampleCaptions" className="carousel slide carruselinfo container" data-bs-ride="false">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    
+                <div id="carouselExampleControls" className="carousel slide carruselinfo container" data-ride="carousel">
                     <div className="carousel-inner">
-                        {encontrados.map((item) => ( 
+                        {productos.map((item) => ( 
                             <div className="carousel-item active">
-                                <img src={item.img1} className="d-block w-100" alt="..." />
+                                <img className="d-block w-100 carrusel" src={item.img1} alt="First slide"/>
                                 <div className="carousel-caption d-none d-md-block">
-                                    <h5 className="text-secondary"><p>¡Lo nuevo en PRODUCTOS!</p>{item.nombre}</h5>
-                                    <p className="text-secondary">{item.descripcion}</p>
+                                    <h5 className="text-white"><p>¡Lo nuevo en PRODUCTOS!</p>{item.nombre}</h5>
+                                    <p className="text-white">{item.descripcion}</p>
                                 </div>
                             </div>
                             ))
                         }
-                        <div className="carousel-item">
-                            <img src="" className="d-block w-100" alt="..." />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
+                        {proyectos.map((item) => ( 
+                            <div className="carousel-item">
+                                <img className="d-block w-100 carrusel" src={item.imagen} alt="Second slide"/>
+                                <div className="carousel-caption d-none d-md-block">
+                                    <h5 className="text-white"><p>¡Lo nuevo en EVENTOS!</p>{item.titulo}</h5>
+                                    <p className="text-white">{item.descripcion}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img src="" className="d-block w-100" alt="..." />
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the third slide.</p>
-                            </div>
-                        </div>
+                        ))
+                        }
                     </div>
-                    
-                    
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Next</span>
-                    </button>
+                    <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span className="carousel-control-prev-icon"></span>
+                        <span className="sr-only">-</span>
+                    </a>
+                    <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span className="carousel-control-next-icon"></span>
+                        <span className="sr-only">-</span>
+                    </a>
                 </div>
             </div>
             <div className="col-lg-7 col-md-8 mx-auto">

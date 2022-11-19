@@ -20,13 +20,6 @@ class UsuariosSerializer(serializers.ModelSerializer):
         return instance
 
 
-class CategoriasSerializer(serializers.ModelSerializer):
-    # create a meta class
-    class Meta:
-        model = Categorias
-        fields = ('id', 'nombre', 'pub_date')
-
-
 class ProductosSerializer(serializers.ModelSerializer):
     # create a meta class
     class Meta:

@@ -14,18 +14,11 @@ class Usuarios(AbstractUser):
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-class Categorias(models.Model):
-    nombre=models.CharField(max_length=200)
-    pub_date=models.DateTimeField('date published')
-
-    def __str__(self):
-        return self.nombre
 
 class Productos(models.Model):
     nombre=models.CharField(max_length=100)
     descripcion=models.CharField(max_length=500)
-    categoria=models.ForeignKey(Categorias,on_delete=models.CASCADE)
-    '''categoria=models.CharField(max_length=100)'''
+    categoria=models.CharField(max_length=100)
     precio=models.DecimalField(max_digits = 7,decimal_places=2)
     img1=models.CharField(max_length=500)
     img2=models.CharField(max_length=500)

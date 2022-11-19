@@ -1,10 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-class CategoriasAdmin(admin.ModelAdmin):
-    list_display = ("nombre", "pub_date")
-
-
 class ProductosAdmin(admin.ModelAdmin):
     list_display = ("nombre", "descripcion", "categoria", "precio", "img1", "img2", "img3", "pub_date")
 
@@ -26,5 +22,4 @@ admin.site.register(Tcontrol_plastico, Tcontrol_plasticoAdmin)
 admin.site.register(Tcontrol_vidrio, Tcontrol_vidrioAdmin)
 admin.site.register(Tcontrol_papel, Tcontrol_papelAdmin)
 admin.site.register(Proyectos, ProyectosAdmin)
-admin.site.register(Categorias, CategoriasAdmin)
 admin.site.register(Productos, ProductosAdmin)
