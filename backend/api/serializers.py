@@ -60,3 +60,8 @@ class Tcontrol_papelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tcontrol_papel
         fields = ('id', 'user_id', 'porcentaje', 'reg_date')
+
+class PapelTopTenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tcontrol_papel
+        fields = ('id', 'user_id', 'porcentaje', 'reg_date')

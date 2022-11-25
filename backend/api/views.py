@@ -200,8 +200,8 @@ class Tcontrol_plasticoView(APIView):
 
 class RplasticoView(APIView):
     def get(self, request, user_id):
-        inicio = request.data['inicio']
-        final = request.data['final']
+        inicio = next_DMY()[0]
+        final = next_DMY()[1]
         res = Tcontrol_plastico.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
         res_final = Tcontrol_plasticoSerializer(res, many=True)
         return Response(res_final.data)
@@ -219,8 +219,8 @@ class Tcontrol_vidrioView(APIView):
         return Response(res.data)
 class RvidrioView(APIView):
     def get(self, request, user_id):
-        inicio = request.data['inicio']
-        final = request.data['final']
+        inicio = next_DMY()[0]
+        final = next_DMY()[1]
         res = Tcontrol_vidrio.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
         res_final = Tcontrol_vidrioSerializer(res, many=True)
         return Response(res_final.data)
@@ -237,8 +237,47 @@ class Tcontrol_papelView(APIView):
         return Response(res.data)
 class RpapelView(APIView):
     def get(self, request, user_id):
-        inicio = request.data['inicio']
-        final = request.data['final']
+        inicio = next_DMY()[0]
+        final = next_DMY()[1]
         res = Tcontrol_papel.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
         res_final = Tcontrol_papelSerializer(res, many=True)
         return Response(res_final.data)
+
+class RpapelTopTenView(APIView):
+    def get(self, request):
+        data = Tcontrol_papel.objects.all()
+        res = Tcontrol_papelSerializer(data, many=True)
+        return Response(res.data)
+
+def next_DMY():
+    day = int(datetime.datetime.strftime(datetime.datetime.now(), '%d'))
+    month = int(datetime.datetime.strftime(datetime.datetime.now(), '%m'))
+    year = int(datetime.datetime.strftime(datetime.datetime.now(), '%Y'))
+    months31 = (1, 3, 5, 7, 8, 10)  # Tuple for Months of 31 days
+    months30 = (4, 6, 9, 11)  # Tuple for Months of 30 days
+
+    next_day = day + 1
+    next_month = month
+    if month == 12 and day == 31:
+        next_day = 1
+        next_month = 1
+        next_year = year + 1
+    else:
+        next_year = year
+    for i in range(len(months31)):
+        if day == 31 and month == months31[i]:
+            next_day = 1
+            next_month = month + 1
+    # Validation: Last Day of Months with 30 days
+    for i in range(len(months30)):
+        if day == 30 and month == months30[i]:
+            next_day = 1
+            next_month = month + 1
+    if month == 2 and day == 28:
+        next_day = 1
+        next_month = month + 1
+    leap_year = year % 4
+    if day == 29 and month == 2 and leap_year == 0:
+        next_day = 1
+        next_month = month + 1
+    return [datetime.datetime(year,month,day),datetime.datetime(next_year,next_month,next_day)]
