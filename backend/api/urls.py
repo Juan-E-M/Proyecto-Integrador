@@ -23,10 +23,14 @@ urlpatterns = [
     path('api/proyectos/<int:proyecto_id>', views.ProyectoDetailView.as_view()),
     path('api/proyectos/ultimo_proyecto', views.UltimoProyectoView.as_view()),
     #Registros
-    path('api/rplastico/', views.Tcontrol_plasticoView.as_view()),
+    path('api/rplastico', views.Tcontrol_plasticoView.as_view()),
     path('api/rplastico/<int:user_id>', views.RplasticoView.as_view()),
-    path('api/rvidrio/', views.Tcontrol_vidrioView.as_view()),
+    path('api/rvidrio', views.Tcontrol_vidrioView.as_view()),
     path('api/rvidrio/<int:user_id>', views.RvidrioView.as_view()),
-    path('api/rpapel/', views.Tcontrol_papelView.as_view()),
-    path('api/rpapel/<int:user_id>', views.RpapelView.as_view())
+    path('api/rpapel', views.Tcontrol_papelView.as_view()),
+    path('api/rpapel/<int:user_id>', views.RpapelView.as_view()),
+    #Top ten
+    path('api/rpapel/ten', views.RpapelTopTenView.as_view()),
+    path('api/rplastico/ten', views.RplasticoTopTenView.as_view()),
+    path('api/rvidrio/ten', views.RvidrioTopTenView.as_view())
 ]

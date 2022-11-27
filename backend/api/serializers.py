@@ -48,20 +48,29 @@ class Tcontrol_plasticoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tcontrol_plastico
         fields = ('id', 'user_id', 'porcentaje', 'reg_date')
-
+class RplasticoSerializer(serializers.ModelSerializer):
+    total_count = serializers.IntegerField()
+    class Meta:
+        model = Tcontrol_plastico
+        fields = ('reg_date','total_count')
 
 class Tcontrol_vidrioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tcontrol_vidrio
         fields = ('id', 'user_id', 'porcentaje', 'reg_date')
-
+class RvidrioSerializer(serializers.ModelSerializer):
+    total_count = serializers.IntegerField()
+    class Meta:
+        model = Tcontrol_vidrio
+        fields = ('reg_date','total_count')
 
 class Tcontrol_papelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tcontrol_papel
         fields = ('id', 'user_id', 'porcentaje', 'reg_date')
 
-class PapelTopTenSerializer(serializers.ModelSerializer):
+class RpapelSerializer(serializers.ModelSerializer):
+    total_count = serializers.IntegerField()
     class Meta:
         model = Tcontrol_papel
-        fields = ('id', 'user_id', 'porcentaje', 'reg_date')
+        fields = ('reg_date','total_count')

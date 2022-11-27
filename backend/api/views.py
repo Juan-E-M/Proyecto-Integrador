@@ -5,6 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .models import *
 from .serializers import *
 import jwt, datetime
+from django.db.models import Count
 
 # Create your views here.
 class RegisterView(APIView):
@@ -197,14 +198,17 @@ class Tcontrol_plasticoView(APIView):
         res.is_valid(raise_exception=True)
         res.save()
         return Response(res.data)
-
 class RplasticoView(APIView):
     def get(self, request, user_id):
+        res = Tcontrol_plastico.objects.filter(user_id=user_id).values('reg_date').annotate(total_count=Count('reg_date')).order_by('reg_date')
+        res_final = RplasticoSerializer(res, many=True)
+        return Response(res_final.data)
+class RplasticoTopTenView(APIView):
+    def get(self, request):
         inicio = next_DMY()[0]
         final = next_DMY()[1]
-        res = Tcontrol_plastico.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
-        res_final = Tcontrol_plasticoSerializer(res, many=True)
-        return Response(res_final.data)
+        data = Tcontrol_plastico.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
+        return Response({'data':data})
 
 
 class Tcontrol_vidrioView(APIView):
@@ -219,11 +223,16 @@ class Tcontrol_vidrioView(APIView):
         return Response(res.data)
 class RvidrioView(APIView):
     def get(self, request, user_id):
+        res = Tcontrol_vidrio.objects.filter(user_id=user_id).values('reg_date').annotate(total_count=Count('reg_date')).order_by('reg_date')
+        res_final = RvidrioSerializer(res, many=True)
+        return Response(res_final.data)
+class RvidrioTopTenView(APIView):
+    def get(self, request):
         inicio = next_DMY()[0]
         final = next_DMY()[1]
-        res = Tcontrol_vidrio.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
-        res_final = Tcontrol_vidrioSerializer(res, many=True)
-        return Response(res_final.data)
+        data = Tcontrol_vidrio.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
+        return Response({'data':data})
+
 
 class Tcontrol_papelView(APIView):
     def get(self, request):
@@ -237,24 +246,28 @@ class Tcontrol_papelView(APIView):
         return Response(res.data)
 class RpapelView(APIView):
     def get(self, request, user_id):
-        inicio = next_DMY()[0]
-        final = next_DMY()[1]
-        res = Tcontrol_papel.objects.filter(user_id=user_id, reg_date__range=[inicio, final])
-        res_final = Tcontrol_papelSerializer(res, many=True)
+        res = Tcontrol_papel.objects.filter(user_id=user_id).values('reg_date').annotate(total_count=Count('reg_date')).order_by('reg_date')
+        res_final = RpapelSerializer(res, many=True)
         return Response(res_final.data)
 
 class RpapelTopTenView(APIView):
     def get(self, request):
-        data = Tcontrol_papel.objects.all()
-        res = Tcontrol_papelSerializer(data, many=True)
-        return Response(res.data)
+        inicio = next_DMY()[0]
+        final = next_DMY()[1]
+        data = Tcontrol_papel.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
+        return Response({'data':data})
+
+
+
+
+
 
 def next_DMY():
     day = int(datetime.datetime.strftime(datetime.datetime.now(), '%d'))
     month = int(datetime.datetime.strftime(datetime.datetime.now(), '%m'))
     year = int(datetime.datetime.strftime(datetime.datetime.now(), '%Y'))
-    months31 = (1, 3, 5, 7, 8, 10)  # Tuple for Months of 31 days
-    months30 = (4, 6, 9, 11)  # Tuple for Months of 30 days
+    months31 = (1, 3, 5, 7, 8, 10)
+    months30 = (4, 6, 9, 11)
 
     next_day = day + 1
     next_month = month
