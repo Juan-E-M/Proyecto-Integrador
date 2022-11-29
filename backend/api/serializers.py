@@ -74,3 +74,8 @@ class RpapelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tcontrol_papel
         fields = ('reg_date','total_count')
+
+class ToptenSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = T_all_register
+        fields = ('id','user_id','type','reg_date')

@@ -50,7 +50,7 @@ class Compras(models.Model):
 
 class Proyectos(models.Model):
     titulo = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=1000)
     lugar = models.CharField(max_length=50, null=True)
     imagen = models.CharField(max_length=500)
     fecha = models.DateTimeField('Fecha del Evento', null=True)
@@ -71,4 +71,9 @@ class Tcontrol_vidrio(models.Model):
 class Tcontrol_papel(models.Model):
     user_id = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
     porcentaje = models.FloatField()
+    reg_date = models.DateTimeField('fecha')
+
+class T_all_register(models.Model):
+    user_id = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    type = models.CharField(max_length=50)
     reg_date = models.DateTimeField('fecha')

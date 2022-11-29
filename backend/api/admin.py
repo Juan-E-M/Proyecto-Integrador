@@ -17,9 +17,13 @@ class Tcontrol_vidrioAdmin(admin.ModelAdmin):
 class Tcontrol_papelAdmin(admin.ModelAdmin):
     list_display = ("user_id", "porcentaje", "reg_date")
 
+class T_all_registerAdmin(admin.ModelAdmin):
+    list_display = ("user_id", "type", "reg_date")
+
 
 admin.site.register(Tcontrol_plastico, Tcontrol_plasticoAdmin)
 admin.site.register(Tcontrol_vidrio, Tcontrol_vidrioAdmin)
 admin.site.register(Tcontrol_papel, Tcontrol_papelAdmin)
 admin.site.register(Proyectos, ProyectosAdmin)
 admin.site.register(Productos, ProductosAdmin)
+admin.site.register(T_all_register, T_all_registerAdmin)
