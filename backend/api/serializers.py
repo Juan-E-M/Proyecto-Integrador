@@ -20,6 +20,7 @@ class UsuariosSerializer(serializers.ModelSerializer):
         return instance
 
 
+
 class ProductosSerializer(serializers.ModelSerializer):
     # create a meta class
     class Meta:

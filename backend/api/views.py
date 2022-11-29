@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
@@ -69,6 +70,19 @@ class UsuariosDetailView(APIView):
         dataUsuarios = Usuarios.objects.get(pk=usuario_id)
         serUsuarios = UsuariosSerializer(dataUsuarios)
         return Response(serUsuarios.data)
+    def patch(self,request, usuario_id):
+        dataUsuarios = Usuarios.objects.get(pk=usuario_id)
+        serializer = UsuariosSerializer(dataUsuarios, data=request.data,
+                                        partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+    def delete(self,request,usuario_id):
+        data_user = Usuarios.objects.get(pk=usuario_id)
+        serSerie = UsuariosSerializer(data_user)
+        data_user.delete()
+        return Response(serSerie.data)
+
 
 ##############################################################################
 class ProductosView(APIView):
