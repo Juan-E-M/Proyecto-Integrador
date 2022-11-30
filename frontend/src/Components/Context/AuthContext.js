@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
     let loginUser = async (e) => {
         e.preventDefault()
 
-        let response = await fetch('http://localhost:8000/api/usuarios/login' , {
+        let response = await fetch('http://192.168.63.234:8000/api/usuarios/login' , {
             method: 'POST',
             headers:{
                 'Content-Type' : 'application/json'
@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null)
         setUser(null)
 
-        let result = await fetch("http://127.0.0.1:8000/api/usuarios/register",
+        let result = await fetch("http://192.168.63.234:8000/api/usuarios/register",
             {
                 method:'POST',
                 body:JSON.stringify(

@@ -84,7 +84,7 @@ class Proyectos extends Component {
   // ComponentDidMount is used to
   // execute the code 
   componentDidMount() {
-      fetch("http://127.0.0.1:8000/api/proyectos")
+      fetch("http://192.168.63.234:8000/api/proyectos")
           .then((res) => res.json())
           .then((json) => {
               this.setState({
@@ -118,8 +118,6 @@ class Proyectos extends Component {
  
       return (
       <div className = "Productos">
-        <Greeting isLoggedIn={isLoggedIn} />
-        {button}
           <div className="container">
               <div className="row row-cols-1 row-cols-md-4 g-4">  {
               items.map((item) => ( 
@@ -133,9 +131,6 @@ class Proyectos extends Component {
                             <Link to={`/proyectos/${item.id}`}>
                               {buttonInscripcion}
                             </Link>                               
-                        </div>
-                        <div className="card-footer">
-                          <small className="text-muted">Evento</small>                          
                         </div>
                       </div>
                   </div>

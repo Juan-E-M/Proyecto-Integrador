@@ -16,12 +16,12 @@ const Informacion = () => {
     },[])
 
     const obtenerDatos = async () =>{
-        const data =  await fetch('http://127.0.0.1:8000/api/ultimo_producto?format=json')
+        const data =  await fetch('http://192.168.63.234:8000/api/ultimo_producto?format=json')
         const productos = await data.json()
         setProductos(productos)
     }
     const obtenerDatosProyectos = async () =>{
-        const data_proyectos =  await fetch('http://127.0.0.1:8000/api/proyectos/ultimo_proyecto?format=json')
+        const data_proyectos =  await fetch('http://192.168.63.234:8000/api/proyectos/ultimo_proyecto?format=json')
         const proyectos = await data_proyectos.json()
         setProyectos(proyectos)
     }
@@ -90,7 +90,7 @@ const Informacion = () => {
                         {productos.map((item) => ( 
                             <div className="carousel-item active">
                                 <img className="d-block w-100 carrusel" src={item.img1} alt="First slide"/>
-                                <div className="carousel-caption d-none d-md-block">
+                                <div className="carousel-caption d-none d-md-block bloque m-3">
                                     <h5 className="text-white"><p>¡Lo nuevo en PRODUCTOS!</p>{item.nombre}</h5>
                                     <p className="text-white">{item.descripcion}</p>
                                 </div>
@@ -100,7 +100,7 @@ const Informacion = () => {
                         {proyectos.map((item) => ( 
                             <div className="carousel-item">
                                 <img className="d-block w-100 carrusel" src={item.imagen} alt="Second slide"/>
-                                <div className="carousel-caption d-none d-md-block">
+                                <div className="carousel-caption d-none d-md-block bloque m-3">
                                     <h5 className="text-white"><p>¡Lo nuevo en EVENTOS!</p>{item.titulo}</h5>
                                     <p className="text-white">{item.descripcion}</p>
                                 </div>

@@ -53,7 +53,7 @@ class Productos extends Component {
     // ComponentDidMount is used to
     // execute the code 
     componentDidMount() {
-        fetch("http://127.0.0.1:8000/api/?format=json")
+        fetch("http://192.168.63.234:8000/api/?format=json")
             .then((res) => res.json())
             .then((json) => {
                 this.setState({

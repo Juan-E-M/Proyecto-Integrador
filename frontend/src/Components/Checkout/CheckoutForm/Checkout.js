@@ -59,7 +59,7 @@ const Checkout = () =>{
     let item = {user_id,username,first_name,total,last_name,descripcion_compra,
       send_email,full_name_card,card_number,exp_date,cod,send_address,departamento,provincia,distrito}
       console.warn(item);
-    let result = await fetch("http://127.0.0.1:8000/api/compras",
+    let result = await fetch("http://192.168.63.234:8000/api/compras",
     {
         method:'POST',
         body:JSON.stringify(item),

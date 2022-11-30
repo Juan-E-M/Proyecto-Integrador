@@ -15,7 +15,7 @@ const Proyecto = () => {
     },[])
     
     const obtenerDatos = async () =>{
-        const data =  await fetch('http://127.0.0.1:8000/api/proyectos/'+id)
+        const data =  await fetch('http://192.168.63.234/api/proyectos/'+id)
         const proyectos = await data.json()
         setProyectos(proyectos)
         

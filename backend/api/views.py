@@ -277,7 +277,8 @@ class TopTenView (APIView):
         inicio = next_DMY()[0]
         final = next_DMY()[1]
         data = T_all_register.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
-        return Response({'data': data})
+        rpta = [dict(q) for q in data]
+        return Response(rpta)
 
     def post(self, request):
         res = ToptenSerializer(data=request.data)
@@ -285,12 +286,15 @@ class TopTenView (APIView):
         res.save()
         return Response(res.data)
 
-
-
 def next_DMY():
     day = int(datetime.datetime.strftime(datetime.datetime.now(), '%d'))
     month = int(datetime.datetime.strftime(datetime.datetime.now(), '%m'))
     year = int(datetime.datetime.strftime(datetime.datetime.now(), '%Y'))
+
+    day = 1
+    month = 12
+    year = 2022
+
     months31 = (1, 3, 5, 7, 8, 10)
     months30 = (4, 6, 9, 11)
 

@@ -18,3 +18,7 @@ main{
 .informacion-margin{
     padding: 2em;
 }
+.bloque{
+    background-color: rgba(0,0,0,0.5);    
+    border-radius: 4px ;   
+}
