@@ -1,0 +1,82 @@
+.general-nosotros{
+    background-color: #2fb174;
+    padding-top: 100px;
+}
+
+.general-container-about-us{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.header-nosotros{
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 0.90rem rgb(248, 248, 248));
+}
+
+.header-nosotros h2{
+    text-align: center;
+    width: 600px;
+    margin-bottom: 70px;
+}
+
+
+.images-from-body{
+    
+    width: 75%;
+    height: 390px;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin: 50px;
+}
+
+.grid-container-lr{
+    margin: 0px 50px 0px 50px;
+    border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 0px 100px 0px 100px;
+    
+}
+.grid-container-l{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.grid-container-bg{
+    margin-bottom: 60px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    height: 500px;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-image: url("../images/reciclar.jpg");
+}
+
+.content-of-bg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgb(0, 0, 0 , 0.6);
+    
+}
