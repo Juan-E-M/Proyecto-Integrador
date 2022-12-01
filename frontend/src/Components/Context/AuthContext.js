@@ -86,11 +86,43 @@ export const AuthProvider = ({children}) => {
         navigate('/login')
     }
 
+    let editarUsuario = async (e) => {
+        e.preventDefault()
+    
+        
+        let response = await fetch('http://localhost:8000/api/usuarios/' + user.id , {
+            method : 'PATCH',
+            body: JSON.stringify({
+                'username' : e.target.nombre.value ,
+                'last_name' : e.target.apellido.value ,
+                'email' : e.target.email.value
+             }),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+    }
+
+    let deleteUsuario = async(e) => {
+        e.preventDefault()
+
+        let response = await fetch('http://localhost:8000/api/usuarios/' + user.id , {
+            method : 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+        logoutUser()
+    }
+
+
     let contextData = {
         user:user,
         loginUser:loginUser,
         logoutUser : logoutUser,
-        register: register
+        register: register,
+        editarUsuario: editarUsuario,
+        deleteUsuario: deleteUsuario
     }
 
     return(
