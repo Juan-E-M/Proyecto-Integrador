@@ -27,11 +27,10 @@ export const AuthProvider = ({children}) => {
         
         if(response.status == 200){
             setAuthTokens(data)
-            setUser(jwt_decode(data.access))
+            setUser(jwt_decode(data.access).id)
             localStorage.setItem('authTokens' , JSON.stringify(data))
-            localStorage.setItem("user",JSON.stringify(jwt_decode(data.access)));
+            localStorage.setItem("user",JSON.stringify(jwt_decode(data.access).id));
             navigate('/')
-
         }else{
             alert('Something went wrong')
         }
@@ -49,7 +48,7 @@ export const AuthProvider = ({children}) => {
                     {'username': e.target.username.value,
                      'email': e.target.email.value,
                      'password': e.target.password.value,
-                     'first_name': e.target.email.value,
+                     'first_name': e.target.first_name.value,
                      'last_name': e.target.last_name.value,
                      'address':e.target.address.value
                 }),
@@ -82,6 +81,8 @@ export const AuthProvider = ({children}) => {
 
     let editarUsuario = async (e) => {
         e.preventDefault()
+    
+        
         let response = await fetch('http://localhost:8000/api/usuarios/' + user.id , {
             method : 'PATCH',
             body: JSON.stringify({
@@ -93,6 +94,10 @@ export const AuthProvider = ({children}) => {
                 'Content-Type' : 'application/json'
             }
         })
+        localStorage.removeItem('authTokens')
+        localStorage.removeItem("user");
+        localStorage.removeItem("username");
+        navigate('/login')
     }
 
     let deleteUsuario = async(e) => {
@@ -112,7 +117,8 @@ export const AuthProvider = ({children}) => {
         logoutUser : logoutUser,
         register: register,
         editarUsuario: editarUsuario,
-        deleteUsuario: deleteUsuario
+        deleteUsuario: deleteUsuario,
+        setUser:setUser
     }
 
     return(

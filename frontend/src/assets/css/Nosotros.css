@@ -1,5 +1,5 @@
 .general-nosotros{
-    background-color: #2fb174;
+    background-color: #39784D;
     padding-top: 100px;
 }
 
@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     gap: 100px;
+    color: aliceblue;
 }
 
 .header-nosotros{
@@ -17,8 +18,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0 0 0.90rem rgb(248, 248, 248));
+    color: aliceblue;
 }
+
 
 .header-nosotros h2{
     text-align: center;

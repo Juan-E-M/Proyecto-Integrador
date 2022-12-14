@@ -9,13 +9,13 @@ import { useStateValue } from "../../StateProvider";
 
 const Producto = () => {
     const {id} = useParams();
+
     const [productos, setProductos] = useState([])
     useEffect(()=>{
         obtenerDatos()
     },[])
-
     const obtenerDatos = async () =>{
-        const data =  await fetch('http://192.168.63.234:8000/api/'+id+'?format=json')
+        const data =  await fetch('http://127.0.0.1:8000/api/'+id+'?format=json')
         const productos = await data.json()
         setProductos(productos)
     }
@@ -63,6 +63,7 @@ const Producto = () => {
                                 <span class="sr-only">-</span>
                             </a>
                             </div>
+                        
                         </div>
                         <div class="col-sm">
                             <div class="card-body py-5 px-5">

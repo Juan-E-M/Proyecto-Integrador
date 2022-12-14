@@ -31,11 +31,11 @@ class LoginView(APIView):
             raise AuthenticationFailed('incorrect password')
         serUser = UsuariosSerializer(user)
         payload = {
-            'id':user.id,
+            'id':serUser.data,
             'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
             'iat':datetime.datetime.utcnow()
         }
-        token = jwt.encode(serUser.data, 'secret', algorithm='HS256')
+        token = jwt.encode(payload, 'secret', algorithm='HS256')
         return Response({
             'access':token
         })
@@ -73,10 +73,12 @@ class UsuariosDetailView(APIView):
     def patch(self,request, usuario_id):
         dataUsuarios = Usuarios.objects.get(pk=usuario_id)
         serializer = UsuariosSerializer(dataUsuarios, data=request.data,
-                                        partial=True)
+                                         partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+
+
     def delete(self,request,usuario_id):
         data_user = Usuarios.objects.get(pk=usuario_id)
         serSerie = UsuariosSerializer(data_user)
@@ -270,19 +272,6 @@ class RpapelTopTenView(APIView):
         final = next_DMY()[1]
         data = Tcontrol_papel.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
         return Response({'data':data})
-
-
-class Rstats(APIView):
-    def get(self, request, user_id):
-        res = Tcontrol_papel.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
-        res1 = Tcontrol_plastico.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
-        res2 = Tcontrol_vidrio.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
-
-        rpta = res + [x for x in res if x not in res1]
-
-        rpta = [d for d in res]
-
-        return Response(rpta)
 
 
 class TopTenView (APIView):

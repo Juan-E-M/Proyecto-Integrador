@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
+def upload_path(instance, filename):
+    return '/'.join(['users',str(instance.username),filename])
+
 
 class Usuarios(AbstractUser):
     username=models.CharField(max_length=255,unique=True)
@@ -9,7 +12,7 @@ class Usuarios(AbstractUser):
     first_name=models.CharField(max_length=255)
     last_name=models.CharField(max_length=255)
     address = models.CharField(max_length=255)
-    perfil_image = models.ImageField(upload_to="users", null=True)
+    perfil_image = models.ImageField(upload_to=upload_path, null=True)
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []

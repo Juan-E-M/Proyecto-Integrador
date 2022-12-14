@@ -25,8 +25,8 @@ const NavBar = () => {
         <Navbar.Collapse className="justify-content-end" id="navbarScroll">
           <Nav>
             <Nav.Link as={Link} to="/  ">Home</Nav.Link>
-            <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
+            <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/proyectos">Proyectos y Eventos</Nav.Link>
 
             {user != null ? (
@@ -40,7 +40,7 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/checkout"><FaShoppingCart/> <span className="badge bg-success rounded-pill">{basket?.length}</span></Nav.Link>
             
             {user != null ? (
-                <Nav.Link as={Link} to="/profile">Perfil de usuario</Nav.Link>
+                <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
                 ) : (
                     <span></span>
                 )}

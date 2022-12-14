@@ -16,7 +16,7 @@ const LoginPage = () => {
             <h1>Login</h1>
             <form onSubmit={loginUser}>
               <div className="sm-3">
-                <label className="form-label">Email</label>
+                <label className="form-label">Usuario</label>
                 <input type="text" className="form-control" name="username" />
               </div>
               <div className="sm-3">
@@ -42,6 +42,7 @@ const LoginPage = () => {
           </div>
           <div className="col-sm-6">
             <img
+              style={{width:'100%'}}
               className="image-login"
               src="https://media.istockphoto.com/photos/recycling-symbol-on-grass-picture-id1325018993?b=1&k=20&m=1325018993&s=170667a&w=0&h=_r0hGFSSj1dj2ZRq17B3DCnLiA_0pOuWOlmpwZDzH-Y="
               alt=""

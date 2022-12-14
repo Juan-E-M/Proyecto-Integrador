@@ -37,7 +37,7 @@ function LoginButton(props) {
 
 function InscribirseButton(props) {
     return (
-        <Button href="/proyectos/${item.id}" onClick={props.onClick} variant="primary">Inscribirse</Button>
+        <Button href="/proyectos/${item.id}" onClick={props.onClick} variant="primary">ver más</Button>
     );
 } //probar
 
@@ -127,7 +127,7 @@ class Proyectos extends Component {
                         <div className="card-body">
                             <h5 className="card-title">{item.titulo}</h5>
                             <p class="card-text">{item.descripcion}</p>
-                            <p class="card-text">{`${new Date(new Date(item.fecha).getTime()).getDate()}/${new Date(new Date(item.fecha).getMonth() + 1).getDate()}/${new Date(new Date(item.fecha).getTime()).getFullYear()}`}</p>
+                            <p class="card-text">{item.fecha.substring(0,10)}</p>
                             <Link to={`/proyectos/${item.id}`}>
                               {buttonInscripcion}
                             </Link>                               

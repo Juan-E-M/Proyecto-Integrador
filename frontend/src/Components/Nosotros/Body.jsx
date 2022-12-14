@@ -10,7 +10,7 @@ const Body = () => {
         <div className="general-container-about-us">
             <div className="grid-container-lr">
                 <div className="grid-container-l">
-                    <h2>Nuestro equipo</h2>
+                    <h2 className="fw-light">Nuestro equipo</h2>
                         <p>Somos una corporación líder, apasionada, comprometida con el manejo responsable y eficiente de los residuos sólidos aprovechables, en armonía con las características de una economía circular.
                         Velamos por dignificar la labor de nuestros recuperadores y aportar al mundo, con la suma de nuestro trabajo, un mejor medio ambiente para nuestros hijos.</p>
                 </div>
@@ -23,13 +23,13 @@ const Body = () => {
                 <img src={basura} className="images-from-body"/>
                 </div>
                 <div className="grid-container-l">
-                    <h2>Problema</h2>
+                    <h2 className="fw-light">Problema</h2>
                     <p>Mal tratamiento de la basura en Arequipa, domésticamente como municipalmente</p>
                 </div>
             </div>
             <div className="grid-container-lr">
                 <div className="grid-container-l">
-                    <h2>Soluciones</h2>
+                    <h2 className="fw-light">Soluciones</h2>
                     <ul><li>
                     Creación de un tacho inteligente que cuente nuestros residuos diarios
                         </li></ul>

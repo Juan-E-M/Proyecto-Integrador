@@ -14,7 +14,7 @@ const Proyecto = () => {
     },[])
     
     const obtenerDatos = async () =>{
-        const data =  await fetch('http://192.168.63.234/api/proyectos/'+id)
+        const data =  await fetch('http://localhost:8000/api/proyectos/'+id)
         const proyectos = await data.json()
         setProyectos(proyectos)
         
@@ -37,10 +37,7 @@ const Proyecto = () => {
                                 <h2 class="card-title">{proyectos.titulo}</h2>
                                 <h5 class="card-text">{proyectos.descripcion}</h5>
                                 <p class="card-text">Ubicacion: {proyectos.lugar}</p>
-                                <p class="card-text">Fecha del Evento: {date}</p>
-                                {console.log(proyectos)}
-                                {console.log(proyectos.fecha)}
-                                {console.log(date)}
+                                <p class="card-text">Fecha del Evento: {proyectos.fecha.toString().substring(0,10)}</p>
                                 <a href="#" class="btn btn-primary">Inscribirse</a>
                             </div>
                         </div>
