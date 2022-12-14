@@ -296,9 +296,9 @@ def next_DMY():
     month = int(datetime.datetime.strftime(datetime.datetime.now(), '%m'))
     year = int(datetime.datetime.strftime(datetime.datetime.now(), '%Y'))
 
-    day = 1
-    month = 12
-    year = 2022
+    #day = 1
+    #month = 12
+    #year = 2022
 
     months31 = (1, 3, 5, 7, 8, 10)
     months30 = (4, 6, 9, 11)
