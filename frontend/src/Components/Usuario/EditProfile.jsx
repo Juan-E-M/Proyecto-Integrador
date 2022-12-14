@@ -43,6 +43,7 @@ const EditProfile = () => {
                     <label className="form-label">Correo Electrónico</label>
                     <input placeholder={user.email} type="text"  name="email" className="form-control"/>
                 </div>
+                
                 <button type="submit" className="btn btn-primary button">
                     Editar
                 </button>

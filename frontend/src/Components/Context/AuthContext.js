@@ -101,6 +101,10 @@ export const AuthProvider = ({children}) => {
                 'Content-Type' : 'application/json'
             }
         })
+        localStorage.removeItem('authTokens')
+        localStorage.removeItem("user");
+        localStorage.removeItem("username");
+        navigate('/login')
     }
 
     let deleteUsuario = async(e) => {

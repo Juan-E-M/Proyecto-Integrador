@@ -1,6 +1,9 @@
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
-import {  Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+
+
 
 const Product = ({item}) => {
 
@@ -34,5 +37,7 @@ const Product = ({item}) => {
     </div>
   );
 };
+
+Product
 
 export default Product;

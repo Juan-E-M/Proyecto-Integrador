@@ -1,22 +1,4 @@
 
-
-
-export const initialState = {
-    basket:[]
-}
-
-export const actionTypes = {
-    ADD_TO_BASKET:"ADD_TO_BASKET",
-    REMOVE_ITEM:"REMOVE_ITEM",
-    CLEAN_BASKET:"CLEAN_BASKET"
-}
-
-export const getBasketTotal = (basket) =>{
-    let sum = basket?.reduce((amount, item) => item.precio + amount, 0)
-    return sum;
-}
-
-
 export const reducer = (state, action)=>{
     console.log(action)
     switch (action.type){
@@ -44,5 +26,3 @@ export const reducer = (state, action)=>{
         default: return state;
     }
 }
-
-export default reducer;
