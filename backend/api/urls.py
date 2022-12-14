@@ -33,5 +33,6 @@ urlpatterns = [
     path('api/rpapel/ten', views.RpapelTopTenView.as_view()),
     path('api/rplastico/ten', views.RplasticoTopTenView.as_view()),
     path('api/rvidrio/ten', views.RvidrioTopTenView.as_view()),
-    path('api/topten', views.TopTenView.as_view())
+    path('api/topten', views.TopTenView.as_view()),
+    path('api/stats/<int:user_id>', views.Rstats.as_view())
 ]

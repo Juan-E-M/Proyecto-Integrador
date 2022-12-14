@@ -84,7 +84,7 @@ class Proyectos extends Component {
   // ComponentDidMount is used to
   // execute the code 
   componentDidMount() {
-      fetch("http://192.168.63.234:8000/api/proyectos")
+      fetch("http://localhost:8000/api/proyectos")
           .then((res) => res.json())
           .then((json) => {
               this.setState({

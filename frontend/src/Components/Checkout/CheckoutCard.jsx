@@ -3,8 +3,7 @@ import { actionTypes } from "../../reducer";
 
 const CheckoutCard = ({item}) => {
 
-    const[{basket}, dispatch] =useStateValue();
-
+  const[{basket}, dispatch] =useStateValue();
     const removeItem=()=>dispatch({
         type:actionTypes.REMOVE_ITEM,
         id: item.id

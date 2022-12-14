@@ -2,7 +2,6 @@ import React from "react";
 import equipo from "../../assets/images/equipo.jpeg" 
 import basura from "../../assets/images/basura.jpg"
 import soluciones from "../../assets/images/soluciones.jpg"
-import reciclar from "../../assets/images/reciclar.jpg"
 
 import "../../assets/css/Nosotros.css"
 

@@ -11,13 +11,12 @@ export const AuthProvider = ({children}) => {
     let [user , setUser] = useState( () => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null);
     let [authTokens , setAuthTokens] = useState( () => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
 
-
     const navigate = useNavigate()
 
     let loginUser = async (e) => {
         e.preventDefault()
 
-        let response = await fetch('http://192.168.63.234:8000/api/usuarios/login' , {
+        let response = await fetch('http://localhost:8000/api/usuarios/login' , {
             method: 'POST',
             headers:{
                 'Content-Type' : 'application/json'
@@ -36,17 +35,14 @@ export const AuthProvider = ({children}) => {
         }else{
             alert('Something went wrong')
         }
-
         console.log('data:' , data)
-        //1:13
     }
 
     let register = async (e) => {
         e.preventDefault()
         setAuthTokens(null)
         setUser(null)
-
-        let result = await fetch("http://192.168.63.234:8000/api/usuarios/register",
+        let result = await fetch("http://localhost:8000/api/usuarios/register",
             {
                 method:'POST',
                 body:JSON.stringify(
@@ -56,7 +52,6 @@ export const AuthProvider = ({children}) => {
                      'first_name': e.target.email.value,
                      'last_name': e.target.last_name.value,
                      'address':e.target.address.value
-
                 }),
                 headers:{
                     "Content-Type":"application/json",
@@ -67,7 +62,6 @@ export const AuthProvider = ({children}) => {
         result = await result.json();
         console.warn("result",result);
 
-        //localStorage.setItem("user",result.id);
         localStorage.setItem("username",result.username);
         localStorage.setItem("user",JSON.stringify(result));
         setUser(result)
@@ -88,8 +82,6 @@ export const AuthProvider = ({children}) => {
 
     let editarUsuario = async (e) => {
         e.preventDefault()
-    
-        
         let response = await fetch('http://localhost:8000/api/usuarios/' + user.id , {
             method : 'PATCH',
             body: JSON.stringify({
@@ -105,7 +97,6 @@ export const AuthProvider = ({children}) => {
 
     let deleteUsuario = async(e) => {
         e.preventDefault()
-
         let response = await fetch('http://localhost:8000/api/usuarios/' + user.id , {
             method : 'DELETE',
             headers: {
@@ -114,7 +105,6 @@ export const AuthProvider = ({children}) => {
         })
         logoutUser()
     }
-
 
     let contextData = {
         user:user,

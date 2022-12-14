@@ -8,19 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { actionTypes } from "../../../reducer";
 import swal from 'sweetalert';
 import AuthContext from "../../Context/AuthContext";
-import { useRadioGroup } from "@mui/material";
 
 const Checkout = () =>{
   let history = useNavigate()
   const[{basket}, dispatch] =useStateValue();
   let {user} = useContext(AuthContext);
-
-  //Descripcion
-  /*
-  let desc = `Producto`+" ".repeat(14)+`Descripción`+" ".repeat(14)+`Precio\n`
-  basket?.forEach(function(numero){
-    desc = desc + `${numero.nombre}${" ".repeat(22-numero.nombre.length)}${numero.descripcion}${" ".repeat(25-numero.descripcion.length)}S/.${numero.precio}\n`
-  });*/
 
   let desc = []
   basket?.forEach(function(numero){
@@ -59,7 +51,7 @@ const Checkout = () =>{
     let item = {user_id,username,first_name,total,last_name,descripcion_compra,
       send_email,full_name_card,card_number,exp_date,cod,send_address,departamento,provincia,distrito}
       console.warn(item);
-    let result = await fetch("http://192.168.63.234:8000/api/compras",
+    let result = await fetch("http://localhost:8000/api/compras",
     {
         method:'POST',
         body:JSON.stringify(item),

@@ -9,20 +9,8 @@ import { useNavigate } from "react-router-dom"
 
 const CheckoutPage = () => {
   let history = useNavigate()
-  const [{ basket }, dispatch] = useStateValue();
+  const[{basket}, dispatch] =useStateValue();
   const [estadomodal1,setEstadomodal1] = useState(false);
-
-  /*const [productos, setProductos] = useState([])
-
-    useEffect(()=>{
-        obtenerDatos()
-    },[])
-
-    const obtenerDatos = async () =>{
-        const data =  await fetch('http://127.0.0.1:8000/api/?format=json')
-        const productos = await data.json()
-        setProductos(productos)
-    }*/
 
   return (
     <div>
@@ -36,10 +24,7 @@ const CheckoutPage = () => {
           <div className="row">
             <div className="col-lg-9 text-center">
               <div className="row">
-                {basket?.map(
-                  (
-                    item //en vez de basket? puede ser products
-                  ) => (
+                {basket?.map((item) => (
                     <div className="col-sm-6 col-lg-4">
                       <CheckoutCard key={item.id} item={item} />
                     </div>
@@ -56,7 +41,6 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
-
       <Modal1
         estado1={estadomodal1}
         setEstado1={setEstadomodal1}>
@@ -66,8 +50,6 @@ const CheckoutPage = () => {
           <Boton onClick={()=>{history("/login")}}>Aceptar</Boton>
         </Contenido>
       </Modal1>
-
-
     </div>
   );
 };

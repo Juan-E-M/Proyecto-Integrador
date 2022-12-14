@@ -7,7 +7,6 @@ import AuthContext from '../Context/AuthContext';
 function Register(){
     const { register } = useContext(AuthContext);
 
-
     let history = useNavigate()
     return(
         <div className="container register">
@@ -48,14 +47,11 @@ function Register(){
                                     </div>
                                 </div>
                                 </form>
-                                
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-            </div>
+        </div>
     );
 }
 

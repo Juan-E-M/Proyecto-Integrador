@@ -28,10 +28,7 @@ const Profile = () => {
                         <h2>Correo</h2>
                         <p>{user.email}</p>
                     </div>
-                    <div className="buttons-container">
-                        <Link to={"/editProfile"}><button type="button" className="btn btn-success buttons-edit-delete">Editar perfil</button></Link>
-                        <button onClick={deleteUsuario} type="button" className="btn btn-danger buttons-edit-delete">Eliminar cuenta</button>
-                    </div>
+                    
                 </div>
             </div>
             {/* <DetailEvent /> */}

@@ -14,7 +14,8 @@ import AuthContext from '../Context/AuthContext';
 const NavBar = () => {
 
   let {user, logoutUser} = useContext(AuthContext);
-  const[{basket}, dispatch] =useStateValue();
+  const[{basket}] =useStateValue();
+  
   return (
     <> 
     <Navbar className='navBg' bg="light" expand="lg">
@@ -27,6 +28,7 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
             <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
             <Nav.Link as={Link} to="/proyectos">Proyectos y Eventos</Nav.Link>
+
             {user != null ? (
                 <Nav.Link onClick={()=>{
                   logoutUser()
@@ -42,12 +44,10 @@ const NavBar = () => {
                 ) : (
                     <span></span>
                 )}
-            
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
     <section>
       <Outlet></Outlet>
     </section>

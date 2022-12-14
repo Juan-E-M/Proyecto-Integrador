@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,28 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
 
-
     const {user} = useContext(AuthContext)
     let history = useNavigate()
     function handleClick() {
         history("/profile")
     }
-    
-    // const[id , setId] = useState(user.id)
-    // const[nombre , setNombre] = useState('')
-    // const[apellido , setApellido] = useState('')
-    // const[email , setEmail] = useState('')
-
-
-    // setNombre(user.username)
-    // setApellido(user.apellido)
-    // setEmail(user.email)
-
 
     const {editarUsuario} = useContext(AuthContext)
-
-
-
 
     return(
         <div className="container m-5">

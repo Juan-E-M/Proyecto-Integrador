@@ -3,9 +3,11 @@ import { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
 import '../../assets/css/LoginPage.css';
 import { useNavigate } from "react-router-dom"
+
 const LoginPage = () => {
   let { loginUser } = useContext(AuthContext);
   let history = useNavigate()
+  
   return (
     <div className="login">
       <div className="container">

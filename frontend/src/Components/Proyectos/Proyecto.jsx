@@ -7,7 +7,6 @@ import { useState } from "react";
 const Proyecto = () => {
 
     const { id } = useParams();
-
     const [proyectos, setProyectos] = useState([])
 
     useEffect(()=>{
@@ -23,7 +22,6 @@ const Proyecto = () => {
 
     let timestamp = new Date(proyectos.fecha).getTime();
     let day = new Date(timestamp).getDate();
-    //let month = new Date(timestamp).getMonth() + 1;
     let month = new Date(timestamp).toLocaleString('default', { month: 'long' });
     let year = new Date(timestamp).getFullYear();
     let date = `${day} de ${month} del año ${year}.`;
@@ -68,7 +66,6 @@ const Proyecto = () => {
                                 <span class="sr-only">-</span>
                             </a>
                             </div>
-                        
                         </div>
                         </div>
                         </div>

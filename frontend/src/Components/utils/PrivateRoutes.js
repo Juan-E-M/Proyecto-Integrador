@@ -4,8 +4,6 @@ import AuthContext from '../Context/AuthContext';
 
 const PrivateRoutes = ({children, ...rest}) => {
     console.log('Private Route works!')
-    
-    //const authenticated = {token : "false"};
 
     let {user} = useContext(AuthContext);
 

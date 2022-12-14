@@ -7,7 +7,6 @@ import '../../assets/css/Footer.css'
 const Footer = () => {
     return(
       <footer className="footer-9938">
-      
         <div className="container">
           <div className="row">
             <div className="col-md-4 logo-section">
@@ -20,7 +19,6 @@ const Footer = () => {
                 <li><a href="#">Facebook</a></li>
                 <li><a href="#">Instagram</a></li>
                 <li><a href="#">Gmail</a></li>
-
               </ul>
             </div>
             <div className="col-md">
@@ -32,7 +30,6 @@ const Footer = () => {
                 <li><a href="#">Eventos</a></li>
               </ul>
             </div>
-
             <div className="col-md">
               <h3>Siguenos</h3>
               <ul className="social list-unstyled">
@@ -59,7 +56,6 @@ const Footer = () => {
               </ul>
             </div>
           </div> 
-  
           <div className="row ">
             <div className="col-12 text-center">
               <div className="copyright pt-2">
@@ -68,7 +64,6 @@ const Footer = () => {
             </div>
           </div> 
         </div>
-        
       </footer>
     )
 }

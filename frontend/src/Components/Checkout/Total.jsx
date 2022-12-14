@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
 
 
-
 const Total = ({ estado1, setEstado1}) => {
+
   let {user} = useContext(AuthContext);
   let history = useNavigate()
+  const[{basket}, dispatch] =useStateValue();
+
   function handleClick() {
     if(user){
       history("/pago")
@@ -18,8 +20,6 @@ const Total = ({ estado1, setEstado1}) => {
     }
   }
 
-  const[{basket}, dispatch] =useStateValue();
-  //console.log(basket)
   return (
     <div className="card text-center m-3">
       <div className="card-body">

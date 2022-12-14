@@ -271,6 +271,20 @@ class RpapelTopTenView(APIView):
         data = Tcontrol_papel.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
         return Response({'data':data})
 
+
+class Rstats(APIView):
+    def get(self, request, user_id):
+        res = Tcontrol_papel.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
+        res1 = Tcontrol_plastico.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
+        res2 = Tcontrol_vidrio.objects.filter(user_id=user_id).values('reg_date').order_by('reg_date').distinct()
+
+        rpta = res + [x for x in res if x not in res1]
+
+        rpta = [d for d in res]
+
+        return Response(rpta)
+
+
 class TopTenView (APIView):
 
     def get (self, request):
@@ -285,6 +299,8 @@ class TopTenView (APIView):
         res.is_valid(raise_exception=True)
         res.save()
         return Response(res.data)
+
+
 
 def next_DMY():
     day = int(datetime.datetime.strftime(datetime.datetime.now(), '%d'))
