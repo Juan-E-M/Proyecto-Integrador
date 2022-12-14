@@ -2,39 +2,7 @@ import Button from 'react-bootstrap/Button';
 import React,{ Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link} from 'react-router-dom';
-
-function UserGreeting(props) {
-    return <h1>Welcome back!</h1>;
-}
   
-function GuestGreeting(props) {
-   return <h1>Please sign up.</h1>;
-}
-
-function Greeting(props) {
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-      return <UserGreeting />;
-    }
-    return <GuestGreeting />;
-}
-  
-function LoginButton(props) {
-    return (
-        <Button onClick={props.onClick}>
-            Login
-        </Button>
-    );
-} //probar
-  
-  function LogoutButton(props) {
-    return (
-        <Button variant="danger" onClick={props.onClick}>
-            Logout
-        </Button>
-    );
-  } //probar
-
 function InscribirseButton(props) {
     return (
         <Button href="/proyectos/${item.id}" onClick={props.onClick} variant="primary">Inscribirse</Button>
@@ -51,27 +19,16 @@ class Proyectos extends Component {
    
   // Constructor 
   constructor(props) {
-      super(props);
-
-      this.handleLoginClick = this.handleLoginClick.bind(this);    //probar
-      this.handleLogoutClick = this.handleLogoutClick.bind(this);  //probar
+      super(props)
 
       this.handleInscribirseClick = this.handleInscribirseClick.bind(this);    //probar
       this.handleAnularClick = this.handleAnularClick.bind(this);  //probar
  
       this.state = {
-          isLoggedIn: false,  //probar
           isInscrito: false,  //probar
           items: [],
           DataisLoaded: false
       };
-  }
-
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});   //probar
-  }
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});  //probar
   }
 
   handleInscribirseClick() {
@@ -84,7 +41,7 @@ class Proyectos extends Component {
   // ComponentDidMount is used to
   // execute the code 
   componentDidMount() {
-      fetch("http://192.168.63.234:8000/api/proyectos")
+      fetch("http://192.168.101.12:3000/api/proyectos")
           .then((res) => res.json())
           .then((json) => {
               this.setState({
@@ -95,22 +52,14 @@ class Proyectos extends Component {
   }
   render() {
       const { DataisLoaded, items } = this.state;
-      
-      const isLoggedIn = this.state.isLoggedIn;  //probar
-      const isInscrito = this.state.isInscrito;  //probar
-      let button, buttonInscripcion; //probar
 
-      if (isLoggedIn) {
-        button = <LogoutButton onClick={this.handleLogoutClick} />;
-        if (isInscrito) { 
-            buttonInscripcion = <AnularButton onClick={this.handleAnularClick}/>;
-          } else {
-            buttonInscripcion = <InscribirseButton onClick={this.handleInscribirseClick}/>
-          }  //probar
-        //buttonInscribirse = <InscribirseButton/>
+      const isInscrito = this.state.isInscrito;  //probar
+      let buttonInscripcion; //probar
+
+      if (isInscrito) { 
+        buttonInscripcion = <AnularButton onClick={this.handleAnularClick}/>;
       } else {
-        button = <LoginButton onClick={this.handleLoginClick} />;
-        buttonInscripcion = <InscribirseButton/>
+        buttonInscripcion = <InscribirseButton onClick={this.handleInscribirseClick}/>
       }  //probar
 
       if (!DataisLoaded) return <div>
