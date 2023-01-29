@@ -38,7 +38,6 @@ const NavBar = () => {
                     <Nav.Link as={Link} to = "/login"> Login </Nav.Link>
                 )}
             <Nav.Link as={Link} to="/checkout"><FaShoppingCart/> <span className="badge bg-success rounded-pill">{basket?.length}</span></Nav.Link>
-            
             {user != null ? (
                 <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
                 ) : (

@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
-        <Header/>
+          <Header/>
           <Routes>
               <Route path='/' element={ <Informacion/> } />
               <Route path='/productos' element={ <Productos/> } />
@@ -43,7 +43,7 @@ function App() {
               <Route path='*' element={ <Navigate replace to="/"/> } />
           </Routes>
           <Footer/>
-          </AuthProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

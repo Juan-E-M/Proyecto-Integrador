@@ -24,43 +24,43 @@ const Proyecto = () => {
     let day = new Date(timestamp).getDate();
     let month = new Date(timestamp).toLocaleString('default', { month: 'long' });
     let year = new Date(timestamp).getFullYear();
-    let date = `${day} de ${month} del año ${year}.`;
+    let date = proyectos.fecha;
 
     return (
         <div className = "Proyecto">
                 <div className="container py-3">
-                <div class="card">
-                    <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="card-body py-5 px-5">
-                                <h2 class="card-title">{proyectos.titulo}</h2>
-                                <h5 class="card-text">{proyectos.descripcion}</h5>
-                                <p class="card-text">Ubicacion: {proyectos.lugar}</p>
-                                <p class="card-text">Fecha del Evento: {proyectos.fecha.toString().substring(0,10)}</p>
-                                <a href="#" class="btn btn-primary">Inscribirse</a>
+                <div className="card">
+                    <div className="container">
+                    <div className="row">
+                        <div className="col-sm">
+                            <div className="card-body py-5 px-5">
+                                <h2 className="card-title">{proyectos.titulo}</h2>
+                                <h5 className="card-text">{proyectos.descripcion}</h5>
+                                <p className="card-text">Ubicacion: {proyectos.lugar}</p>
+                                <p className="card-text">Fecha del Evento: {date}</p>
+                                <a href="#" className="btn btn-primary">Inscribirse</a>
                             </div>
                         </div>
-                        <div class="col-sm contenedorcarrusel">
-                        <div id="carouselExampleControls" class="carousel slide py-3 " data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                <img class="d-block w-100 carrusel" src={proyectos.imagen} alt="First slide"/>
+                        <div className="col-sm contenedorcarrusel">
+                        <div id="carouselExampleControls" className="carousel slide py-3 " data-ride="carousel">
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                <img className="d-block w-100 carrusel" src={proyectos.imagen} alt="First slide"/>
                                 </div>
-                                <div class="carousel-item">
-                                <img class="d-block w-100 carrusel" src={proyectos.imagen} alt="Second slide"/>
+                                <div className="carousel-item">
+                                <img className="d-block w-100 carrusel" src={proyectos.imagen} alt="Second slide"/>
                                 </div>
-                                <div class="carousel-item">
-                                <img class="d-block w-100 carrusel" src={proyectos.imagen} alt="Third slide"/>
+                                <div className="carousel-item">
+                                <img className="d-block w-100 carrusel" src={proyectos.imagen} alt="Third slide"/>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                                <span class="sr-only">-</span>
+                            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span className="carousel-control-prev-icon"></span>
+                                <span className="sr-only">-</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                                <span class="sr-only">-</span>
+                            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span className="carousel-control-next-icon"></span>
+                                <span className="sr-only">-</span>
                             </a>
                             </div>
                         </div>

@@ -55,6 +55,7 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
 const Boton = styled.button`
 	display: block;
 	padding: 10px 30px;

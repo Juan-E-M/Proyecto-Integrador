@@ -9,13 +9,19 @@ export const actionTypes = {
 }
 
 export const getBasketTotal = (basket) =>{
-    let sum = basket?.reduce((amount, item) => item.precio + amount, 0)
-    return sum;
+    const exist_price = basket.filter(product =>product.precio>=0)
+    if (exist_price.length > 0){
+        let sum = basket?.reduce((amount, item) => item.precio + amount, 0)
+        return sum;
+    }else {
+        return console.log('Tu cesta está vacía')
+    }
 }
 
 
 const reducer = (state, action)=>{
     console.log(action)
+    console.log(state)
     switch (action.type){
         case "ADD_TO_BASKET":
         return{
