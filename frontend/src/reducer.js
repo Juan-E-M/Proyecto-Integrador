@@ -2,15 +2,13 @@ export const initialState = {
     basket:[]
 }
 
-export const actionTypes = {
-    ADD_TO_BASKET:"ADD_TO_BASKET",
-    REMOVE_ITEM:"REMOVE_ITEM",
-    CLEAN_BASKET:"CLEAN_BASKET"
-}
+export const actionTypes = { ADD_TO_BASKET:"ADD_TO_BASKET",
+                             REMOVE_ITEM:"REMOVE_ITEM",
+                             CLEAN_BASKET:"CLEAN_BASKET"}
 
 export const getBasketTotal = (basket) =>{
-    const exist_price = basket.filter(product =>product.precio>=0)
-    if (exist_price.length > 0){
+    const exist_price = basket?.some(producto=>producto.precio>0)
+    if (exist_price){
         let sum = basket?.reduce((amount, item) => item.precio + amount, 0)
         return sum;
     }else {

@@ -60,7 +60,7 @@ export const AuthProvider = ({children}) => {
             })
 
         result = await result.json();
-        console.warn("result",result);
+        //console.warn("result",result);
 
         localStorage.setItem("username",result.username);
         localStorage.setItem("user",JSON.stringify(result));

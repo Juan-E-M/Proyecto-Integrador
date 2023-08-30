@@ -11,6 +11,7 @@ from django.db.models import Count
 # Create your views here.
 class RegisterView(APIView):
     def post(self,request):
+        print(request.data)
         serializer = UsuariosSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -275,11 +276,12 @@ class RpapelTopTenView(APIView):
 
 
 class TopTenView (APIView):
-
+    
     def get (self, request):
         inicio = next_DMY()[0]
         final = next_DMY()[1]
-        data = T_all_register.objects.filter(reg_date__range=[inicio, final]).values('user_id','user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
+        data = T_all_register.objects.filter(reg_date__range=[inicio, final]).values('user_id',
+                                             'user_id__username').annotate(total_count=Count('user_id')).order_by('-total_count')[:10]
         rpta = [dict(q) for q in data]
         return Response(rpta)
 
